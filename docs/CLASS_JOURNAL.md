@@ -43,4 +43,23 @@ Librería especializada en temas de seguridad, con servicios, componentes y ruta
 
 `ng generate @nrwl/angular:library --name=auth --buildable --enableIvy --lazy --linter=eslint --parentModule=apps\showcase\src\app\core\core-routing.module.ts --prefix=ab-auth --routing --no-interactive --dry-run`
 
+---
 
+## Nx ecosystem jest, cypress, storybook
+
+> jest configurado de serie. 💡 Se puede deshabilitar para componentes presentacionales.
+
+### 🐲 StoryBook
+`npm i -D @nrwl/storybook`
+
+#### 📚 UI Lib
+
+Probar la interacción de sus componentes con storybook
+
+`ng generate @nrwl/angular:storybook-configuration --name=ui --no-configureCypress --no-generateCypressSpecs --generateStories --no-interactive --dry-run`
+
+#### 📚 Auth Lib
+
+Además probar las páginas con cypress
+
+`ng generate @nrwl/angular:storybook-configuration --name=auth --configureCypress --generateCypressSpecs --generateStories --no-interactive --dry-run`
