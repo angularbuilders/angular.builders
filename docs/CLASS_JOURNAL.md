@@ -47,6 +47,10 @@ Librería especializada en temas de seguridad, con servicios, componentes y ruta
 
 ## Nx ecosystem jest, cypress, storybook
 
+- Tema: [Ecosistema y utilidades de Nx (Cypress, Jest, StoryBook)](https://www.notion.so/albr/Angular-Escalable-ef905bb0b90846b2ac423ed35c276a6e#79bae06e6976489992b18594daf62b62)
+
+- Pull Request: [test-Nx-ecosystem-jest-cypress-storybook PR: #6](https://github.com/angularbuilders/angular.builders/pull/6)
+
 > jest configurado de serie. 💡 Se puede deshabilitar para componentes presentacionales.
 
 ### 🐲 StoryBook
