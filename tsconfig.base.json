@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular.builders/ui": ["libs/ui/src/index.ts"],
+      "@angular.builders/data": ["libs/data/src/index.ts"],
+      "@angular.builders/auth": ["libs/auth/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
