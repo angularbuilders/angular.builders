@@ -5,7 +5,7 @@
       "projectType": "application",
       "root": "apps/showcase",
       "sourceRoot": "apps/showcase/src",
-      "prefix": "angular.builders",
+      "prefix": "ab-showcase",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -20,7 +20,9 @@
               "apps/showcase/src/favicon.ico",
               "apps/showcase/src/assets"
             ],
-            "styles": ["apps/showcase/src/styles.css"],
+            "styles": [
+              "apps/showcase/src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -81,7 +83,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/showcase"],
+          "outputs": [
+            "coverage/apps/showcase"
+          ],
           "options": {
             "jestConfig": "apps/showcase/jest.config.js",
             "passWithNoTests": true
@@ -110,7 +114,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/showcase-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/showcase-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'angular.builders-root',
+  selector: 'ab-showcase-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'showcase';
+  title = 'Angular.Builders showcase';
 }
