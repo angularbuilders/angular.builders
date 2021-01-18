@@ -13,6 +13,9 @@ En este caso `"prefix": "ab-showcase",` tanto en `angular.json` como en `apps\sh
 
 ## Estructura de soluciones: aplicaciones y librerías
 
+- Tema: [Instalación y migración de aplicaciones para usar con Nx](https://www.notion.so/albr/Angular-Escalable-ef905bb0b90846b2ac423ed35c276a6e#59b96283feaa4cf78e6f364b2a7d1b61)
+
+- Pull Request: [refactor-Aplicaciones-Librerías-y-módulos PR: #4](https://github.com/angularbuilders/angular.builders/pull/4)
 
 ### 📘 Core Module
 
