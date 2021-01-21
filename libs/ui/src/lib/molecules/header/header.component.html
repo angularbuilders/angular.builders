@@ -1,0 +1,9 @@
+<h1>
+  {{ appHeading | uppercase }}
+</h1>
+<nav>
+  <ul>
+    <ab-ui-hyper-link *ngFor="let link of headerLinks" [link]="link">
+    </ab-ui-hyper-link>
+  </ul>
+</nav>

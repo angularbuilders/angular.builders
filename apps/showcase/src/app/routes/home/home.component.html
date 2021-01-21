@@ -1,0 +1,12 @@
+<ab-showcase-gallery-header (search)="searchText = $event">
+</ab-showcase-gallery-header>
+<ab-showcase-gallery-categories
+  *ngIf="categories$ | async as categories"
+  [categories]="categories"
+>
+</ab-showcase-gallery-categories>
+<ab-showcase-gallery-featured
+  *ngIf="featured$ | async as featured"
+  [featured]="featured"
+>
+</ab-showcase-gallery-featured>

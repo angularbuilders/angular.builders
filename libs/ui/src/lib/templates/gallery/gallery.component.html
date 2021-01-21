@@ -1,0 +1,6 @@
+<section>
+  <header>
+    <ng-content select="header"></ng-content>
+  </header>
+  <ab-ui-card *ngFor="let item of getCards()" [card]="item"> </ab-ui-card>
+</section>

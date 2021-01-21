@@ -1,0 +1,8 @@
+<a *ngIf="link.isRemote; else aRouter" href="{{ link.url }}" target="_blank">{{
+  link.text
+}}</a>
+<ng-template #aRouter>
+  <a [routerLink]="[link.url]" routerLinkActive="router-link-active">{{
+    link.text
+  }}</a>
+</ng-template>

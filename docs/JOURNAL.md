@@ -67,3 +67,22 @@ Probar la interacción de sus componentes con storybook
 Además probar las páginas con cypress
 
 `ng generate @nrwl/angular:storybook-configuration --name=auth --configureCypress --generateCypressSpecs --generateStories --no-interactive --dry-run`
+
+### Generate dumb components
+`ng generate @schematics/angular:component --name=atoms/hyperLink --project=ui --export --skipTests`
+
+### Generate module route
+
+`ng generate @schematics/angular:module --name=routes/home --module=core/core.module --route=home --routing --no-interactive`
+
+`tsconfig.base.json`
+
+```
+"angularCompilerOptions": {
+    "strictTemplates": true,
+    "strictInjectionParameters": true
+  },
+```
+
+ng generate @schematics/angular:component --name=routes/home/gallery-header --changeDetection=OnPush --skipTests
+ng generate @schematics/angular:component --name=templates/gallery --project=ui --changeDetection=OnPush --export --skipTests
