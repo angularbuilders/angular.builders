@@ -1,0 +1,11 @@
+<header>
+  <h1>Showcase of resources from the Angular community</h1>
+  <form (submit)="onSearchSubmit()">
+    <input
+      type="search"
+      placeholder="Search for Angular resources"
+      (change)="onSearchChange($event)"
+    />
+    <input type="submit" value="🔎" />
+  </form>
+</header>

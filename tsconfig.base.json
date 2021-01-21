@@ -13,12 +13,17 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strict": true,
     "baseUrl": ".",
     "paths": {
       "@angular.builders/ui": ["libs/ui/src/index.ts"],
       "@angular.builders/data": ["libs/data/src/index.ts"],
       "@angular.builders/auth": ["libs/auth/src/index.ts"]
     }
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true,
+    "strictInjectionParameters": true
   },
   "exclude": ["node_modules", "tmp"]
 }

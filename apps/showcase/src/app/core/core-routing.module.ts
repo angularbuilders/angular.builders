@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
       import('@angular.builders/auth').then((module) => module.AuthModule),
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('../routes/home/home.module').then((m) => m.HomeModule),
   },
 ];
 
