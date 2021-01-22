@@ -10,11 +10,9 @@ Also serves as a full feature Angular application used as a sample during course
 
 ## 📘 Documentation
 
-There is a diary of the development process with architectural decisions taken.
+There is a [Journal](https://github.com/angularbuilders/angular.builders/blob/main/docs/JOURNAL.md) of the development process with architectural decisions taken.
 
-[Journal](https://github.com/angularbuilders/angular.builders/blob/main/docs/JOURNAL.md)
-
-Also track the project evolution on its [kaban of issues](https://github.com/angularbuilders/angular.builders/projects/1)
+Also track the project evolution on its [Kanban of issues](https://github.com/angularbuilders/angular.builders/projects/1)
 
 ## 📋 Functionality
 
@@ -32,5 +30,5 @@ Also track the project evolution on its [kaban of issues](https://github.com/ang
 - RxJs
 
 ## 👨 Created by Alberto Basalo
-[@albertobasalo](https://twitter.com/albertobasalo)
 
+[@albertobasalo](https://twitter.com/albertobasalo)
