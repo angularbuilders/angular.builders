@@ -216,3 +216,29 @@ Se recomienda configurarlo para todas las aplicaciones en `angular.json`.
 ```
 
 > 🦉 Como regla general es mejor exponer objetos que tipos primitivos (_avoid primitive obsession_). Pero esto implica usar alguna técnica de **inmutabilidad** y enviar clones para cada cambio.
+
+---
+
+# Navegación y datos
+
+Usar json-server en modo desarrollo: `npm run start:api`
+
+## Ejecuciones previas a la navegación: Resolvers y guards
+
+### Resolver
+
+Asociado al enrutador de negocio _lazy_
+
+`ng g resolver routes/home/services/categories`
+
+### Servicio de datos
+
+En la librería propia de datos
+
+`ng g service categories --project=data`
+
+resolvers
+
+data service
+interfaces
+environment injection token

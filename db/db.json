@@ -1,0 +1,22 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Libraries",
+      "description": "Packages or source code to depend on",
+      "ownerId": "albertobasalo"
+    },
+    {
+      "id": "2",
+      "name": "UI components",
+      "description": "Presentational frameworks and utilities",
+      "ownerId": "albertobasalo"
+    },
+    {
+      "id": "4",
+      "name": "Courses",
+      "description": "Video, live or presential classes.",
+      "ownerId": "albertobasalo"
+    }
+  ]
+}
