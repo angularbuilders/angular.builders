@@ -44,7 +44,7 @@ Librería especializada en temas de seguridad, con servicios, componentes y ruta
 
 `ng g @nrwl/angular:library --name=auth --buildable --enableIvy --lazy --linter=eslint --parentModule=apps\showcase\src\app\core\core-routing.module.ts --prefix=ab-auth --routing `
 
-![Diagrama de módulos](./images/modules#2.png)
+![Diagrama de módulos](https://github.com/angularbuilders/angular.builders/blob/main/docs/images/application%232.png)
 
 ---
 
@@ -191,7 +191,7 @@ Nivel mínimo de componentización. Encapsulan elementos de HTML estándar o de 
 
 > Normalmente aportan también su granito de arena en la homogeneidad UX.
 
-![Diagrama de componentes](./images/application#2.png)
+![Diagrama de componentes](https://github.com/angularbuilders/angular.builders/blob/main/docs/images/application#2.png)
 
 ---
 
