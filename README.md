@@ -6,7 +6,15 @@ A showcase of resources for the Angular community
 
 Improve the official Angular resources gallery
 
-Also a full feature Angular application used as a sample during course lessons.
+Also serves as a full feature Angular application used as a sample during course lessons.
+
+## 📘 Documentation
+
+There is a diary of the development process with architectural decisions taken.
+
+[Journal](https://github.com/angularbuilders/angular.builders/blob/main/docs/JOURNAL.md)
+
+Also track the project evolution on its [kaban of issues](https://github.com/angularbuilders/angular.builders/projects/1)
 
 ## 📋 Functionality
 
