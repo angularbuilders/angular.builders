@@ -2,7 +2,7 @@ import { Category, Resource, ResourcesService } from '@angular.builders/data';
 import { Card } from '@angular.builders/ui';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   categoryCards!: Card[];
   featuredCards$!: Observable<Card[]>;
 
+  // ToDo: Take transformation functions out of the component
+
   constructor(
     private route: ActivatedRoute,
     private resource: ResourcesService
@@ -24,7 +26,6 @@ export class HomeComponent implements OnInit {
     this.categoryCards = categories.map((category: Category) => {
       return { title: category.name, description: category.description };
     });
-    // To Do: bind to an store
     this.featuredCards$ = this.resource.getFeatured$().pipe(
       map((resources: Resource[]) => {
         return resources.map((resource: Resource) => {
@@ -35,14 +36,9 @@ export class HomeComponent implements OnInit {
         });
       })
     );
-    this.featuredCards$ = of([
-      { title: 'Angular Material', description: 'Material Design for Angular' },
-      { title: 'NgRx', description: 'Redux implementation' },
-      { title: 'Nx.dev', description: 'CLI supercharged' },
-    ]);
   }
   searchResources(searchText: string) {
-    // To Do: dispatch action
+    // ToDo: dispatch action
     this.searchText = searchText;
   }
 }
