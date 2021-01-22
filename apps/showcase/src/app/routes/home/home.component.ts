@@ -1,3 +1,4 @@
+import { Card } from '@angular.builders/ui';
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
@@ -7,8 +8,8 @@ import { Observable, of } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   searchText = '';
-  categories$!: Observable<unknown[]>;
-  featured$!: Observable<unknown[]>;
+  categories$!: Observable<Card[]>;
+  featured$!: Observable<Card[]>;
 
   ngOnInit(): void {
     // To Do: bind to an store

@@ -1,3 +1,4 @@
+import { Card } from '@angular.builders/ui';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
@@ -8,5 +9,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class GalleryCategoriesComponent {
   title = 'Categories';
-  @Input() categories!: unknown[];
+  @Input() categories!: Card[];
 }

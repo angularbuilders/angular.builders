@@ -8,8 +8,5 @@ import { Card } from '../../models/Card';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryComponent {
-  @Input() items!: unknown[];
-  getCards(): Card[] {
-    return this.items.map((i) => i as Card);
-  }
+  @Input() cards!: Card[];
 }

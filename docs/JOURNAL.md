@@ -152,6 +152,10 @@ Son componentes presentacionales con responsabilidad de lógica de presentación
 
 - Suelen residir en su propia librería (UI).
 
+- Publica sus propias interfaces de datos.
+
+- No suelen requerir constructor ni _ngOnInit_
+
 Si es así se aconseja configurar su generación para que por defecto sean exportables y sin pruebas de código.
 
 ```json
@@ -201,7 +205,7 @@ Detección automática. Transparente para el programador pero se lanza demasiada
 
 Detección semiautomática. El programador es consciente de cuándo y porqué se lanza pero ocurre menos veces y con evaluación por referencia (mucho más rápida).
 
-Pre configurado en `angular.json` para no recordarlo en cada generación.
+Se recomienda configurarlo para todas las aplicaciones en `angular.json`.
 
 ```json
   "schematics": {
