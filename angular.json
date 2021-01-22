@@ -336,7 +336,8 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "export": "false"
+      "export": "false",
+      "change-detection": "OnPush"
     },
     "@nrwl/angular": {
       "application": {

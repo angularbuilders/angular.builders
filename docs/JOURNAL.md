@@ -1,6 +1,7 @@
 # 1 Nx, grandes proyectos requieren mejores herramientas
 
 ## Instalación y configuración de Nx
+
 - Tema: [Instalación y migración de aplicaciones para usar con Nx](https://www.notion.so/albr/Angular-Escalable-ef905bb0b90846b2ac423ed35c276a6e#7c09b824b7694d46b71bf8e2fb97bfbf)
 
 - Pull Request: [1-style-Configure-Names-and-Prefixes PR: #2](https://github.com/angularbuilders/angular.builders/pull/2)
@@ -19,29 +20,31 @@ En este caso `"prefix": "ab-showcase",` tanto en `angular.json` como en `apps\sh
 
 ### 📘 Core Module
 
-Módulo destinado a enrutado y dependencias de otros módulos
+Módulo destinado a enrutado a dependencias de otros módulos y al componente shell
 
-`ng generate @schematics/angular:module --name=core --project=showcase --routing --routingScope=Root --no-interactive --dry-run`
+`ng g m core --project=showcase --routing --routingScope=Root`
 
 ### 📚 UI Lib
 
-Librería especializada en componentes reutilizables.
+Librería especializada en componentes reutilizables entre aplicaciones.
 
-`ng generate @nrwl/angular:library --name=ui --buildable --enableIvy --linter=eslint --prefix=ab-ui --strict --no-interactive --dry-run`
+`ng g @nrwl/angular:library --name=ui --buildable --enableIvy --linter=eslint --prefix=ab-ui --strict`
 
 ### 📚 Data Lib
 
 Librería especializada en servicios de acceso remoto y gestión local de datos
 
-`ng generate @nrwl/angular:library --name=data --buildable --enableIvy --linter=eslint --prefix=ab-data --strict --no-interactive --dry-run`
+`ng g @nrwl/angular:library --name=data --buildable --enableIvy --linter=eslint --prefix=ab-data --strict`
 
 ### 📚 Auth Lib
 
 Librería especializada en temas de seguridad, con servicios, componentes y rutas
 
-> 🚨 Esta librería gestiona rutas de carga diferida. ¡Y puede usarse en distintos proyectos!
+> 🚨 Esta librería gestiona rutas de carga diferida. ¡Y puede usarse en distintos proyectos! Ojo al `parent module`
 
-`ng generate @nrwl/angular:library --name=auth --buildable --enableIvy --lazy --linter=eslint --parentModule=apps\showcase\src\app\core\core-routing.module.ts --prefix=ab-auth --routing --no-interactive --dry-run`
+`ng g @nrwl/angular:library --name=auth --buildable --enableIvy --lazy --linter=eslint --parentModule=apps\showcase\src\app\core\core-routing.module.ts --prefix=ab-auth --routing `
+
+![Diagrama de módulos](./images/modules#2.png)
 
 ---
 
@@ -51,38 +54,161 @@ Librería especializada en temas de seguridad, con servicios, componentes y ruta
 
 - Pull Request: [test-Nx-ecosystem-jest-cypress-storybook PR: #6](https://github.com/angularbuilders/angular.builders/pull/6)
 
-> jest configurado de serie. 💡 Se puede deshabilitar para componentes presentacionales.
+### Pruebas unitarias
+
+#### Jest
+
+Configurado de serie. 💡 Se sugiere deshabilitar para componentes presentacionales.
+
+### Pruebas funcionales
 
 ### 🐲 StoryBook
+
+Permite probar componentes presentacionales de manera unitaria
+
 `npm i -D @nrwl/storybook`
 
 #### 📚 UI Lib
 
-Probar la interacción de sus componentes con storybook
+Configurado para probar la interacción de sus componentes con _storybook_
 
-`ng generate @nrwl/angular:storybook-configuration --name=ui --no-configureCypress --no-generateCypressSpecs --generateStories --no-interactive --dry-run`
+`ng g @nrwl/angular:storybook-configuration --name=ui --no-configureCypress --no-generateCypressSpecs --generateStories`
+
+### 🌲 Cypress
+
+Permite probar aplicaciones funcionando (e2e) o librerías que expongan rutas.
 
 #### 📚 Auth Lib
 
-Además probar las páginas con cypress
+Configurado para probar las páginas (rutas) con _cypress_
 
-`ng generate @nrwl/angular:storybook-configuration --name=auth --configureCypress --generateCypressSpecs --generateStories --no-interactive --dry-run`
+`ng g @nrwl/angular:storybook-configuration --name=auth --configureCypress --generateCypressSpecs --generateStories`
 
-### Generate dumb components
-`ng generate @schematics/angular:component --name=atoms/hyperLink --project=ui --export --skipTests`
+---
 
-### Generate module route
+### 💂‍♂️ Modo estricto
 
-`ng generate @schematics/angular:module --name=routes/home --module=core/core.module --route=home --routing --no-interactive`
+En el `tsconfig.base.json` puedes activar el modo estricto tanto para TypeScript como para Angular. Con ello tendrás que ser más riguroso en la declaración y uso de tipos, pero a cambio ganarás en confianza por los chequeos extra de ambos compiladores.
 
-`tsconfig.base.json`
-
-```
+```json
+""compilerOptions": {
+  "strict": true,
+  }
 "angularCompilerOptions": {
     "strictTemplates": true,
     "strictInjectionParameters": true
   },
 ```
 
-ng generate @schematics/angular:component --name=routes/home/gallery-header --changeDetection=OnPush --skipTests
-ng generate @schematics/angular:component --name=templates/gallery --project=ui --changeDetection=OnPush --export --skipTests
+---
+
+# 2. Components
+
+## Tipos de componentes y su equivalente en (Atomic Design)
+
+- Tema: [Tipos de componentes y responsabilidades](https://www.notion.so/albr/Angular-Escalable-ef905bb0b90846b2ac423ed35c276a6e#10474f6487fe4625879c56e0271829c8)
+
+- Pull Request: [7-feat-Componentes-tipos-y-sistemas #8]https://github.com/angularbuilders/angular.builders/pull/8)
+
+### En módulos funcionales
+
+- Normalmente asociados a rutas cargadas en modo lazy.
+
+- Pueden residir en su propia librería
+
+Si es así se aconseja configurar su generación para que por defecto sean privados.
+
+```json
+  "schematics": {
+    "@schematics/angular:component": {
+      "export": "false",
+    }
+  }
+```
+
+#### Componentes de ruta (PAGES)
+
+Son componentes inteligentes con responsabilidad de llamada a lógica de negocio y accesos a datos. Se auto generan con su módulo _lazy_
+
+`ng g m --name=routes/home --module=core/core.module --route=home --routing --no-interactive`
+
+> No deben contener HTML standard en su plantilla
+
+#### Componentes de negocio (ORGANISMS)
+
+Son componentes presentacionales con responsabilidad de lógica de presentación y validación.
+
+`ng g c --name=routes/home/gallery-header --skipTests`
+
+`ng g c --name=routes/home/gallery-categories --skipTests`
+
+`ng g c --name=routes/home/gallery-featured --skipTests`
+
+> Reciben datos síncronos vía @Input y emiten eventos mediante @Output. Pueden necesitar pruebas unitarias de código para validaciones o transformaciones.
+
+### En módulos de infraestructura
+
+- Son compartidos por el resto de módulos.
+
+- Suelen residir en su propia librería (UI).
+
+Si es así se aconseja configurar su generación para que por defecto sean exportables y sin pruebas de código.
+
+```json
+  "schematics": {
+    "@schematics/angular:component": {
+      "export": "true",
+      "skipTests": "true"
+    }
+  }
+```
+
+#### Plantillas de páginas (TEMPLATES)
+
+Componentes con _placeholders_ para incrustar otros componentes aportando consistencia y reutilizando _layouts_
+
+`ng g c --name=templates/gallery --project=ui --export --skipTests`
+
+> Hacen uso extenso de la directiva `ng-content`.
+
+#### Plantillas de páginas (MOLECULES)
+
+Similares a los organismos, pero más abstractos. No están adaptados a un problema de negocio concreto; resuelven problemas comunes a cualquier aplicación.
+
+`ng g c --name=molecules/card --project=ui --export --skipTests`
+
+> Presentan al usuario estructuras de datos genéricas.
+
+#### Plantillas de páginas (ATOMS)
+
+Nivel mínimo de componentización. Encapsulan elementos de HTML estándar o de algún framework CSS. De esta forma hacen que la aplicación sea menos dependiente de terceros.
+
+`ng g c --name=atoms/hyperLink --project=ui --export --skipTests`
+
+> Normalmente aportan también su granito de arena en la homogeneidad UX.
+
+![Diagrama de componentes](./images/application#2.png)
+
+---
+
+## Estrategias de detección de cambios
+
+### 🤹‍♀️ Default
+
+Detección automática. Transparente para el programador pero se lanza demasiadas veces y con evaluación por valor (costosa con objetos o arrays grandes).
+
+### 🥊 OnPush
+
+Detección semiautomática. El programador es consciente de cuándo y porqué se lanza pero ocurre menos veces y con evaluación por referencia (mucho más rápida).
+
+Pre configurado en `angular.json` para no recordarlo en cada generación.
+
+```json
+  "schematics": {
+    "@schematics/angular:component": {
+      "change-detection": "OnPush"
+    }
+  }
+```
+
+> 🦉 Como regla general es mejor exponer objetos que tipos primitivos (_avoid primitive obsession_). Pero esto implica usar alguna técnica de **inmutabilidad** y enviar clones para cada cambio.
