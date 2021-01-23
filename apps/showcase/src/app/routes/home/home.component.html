@@ -2,8 +2,5 @@
 </ab-showcase-gallery-header>
 <ab-showcase-gallery-categories [categories]="categoryCards">
 </ab-showcase-gallery-categories>
-<ab-showcase-gallery-featured
-  *ngIf="featuredCards$ | async as featuredCards"
-  [featured]="featuredCards"
->
+<ab-showcase-gallery-featured [featured]="featuredCards">
 </ab-showcase-gallery-featured>

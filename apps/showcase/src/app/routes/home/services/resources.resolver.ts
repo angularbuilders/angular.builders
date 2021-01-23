@@ -9,20 +9,20 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CategoriesService } from '../../../core/services/categories.service';
+import { ResourcesService } from '../../../core/services/resources.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CategoriesResolver implements Resolve<Card[]> {
-  constructor(private categories: CategoriesService) {}
+export class ResourcesResolver implements Resolve<Card[]> {
+  constructor(private resources: ResourcesService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Card[]> {
-    return this.categories
-      .getAll$()
-      .pipe(map(this.categories.transformToCards));
+    return this.resources
+      .getFeatured$()
+      .pipe(map(this.resources.transformToCards));
   }
 }

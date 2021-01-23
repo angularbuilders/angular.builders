@@ -1,6 +1,6 @@
 import { RestService } from '@angular.builders/data';
+import { Card } from '@angular.builders/ui';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { Resource } from '../models/Resource';
 
 @Injectable({
@@ -11,15 +11,15 @@ export class ResourcesService {
   constructor(private rest: RestService<Resource>) {}
 
   getFeatured$() {
-    return this.rest.getAll$(this.endPoint).pipe(
-      map((resources: Resource[]) => {
-        return resources.map((resource: Resource) => {
-          return {
-            title: resource.name,
-            description: resource.description || '',
-          };
-        });
-      })
-    );
+    return this.rest.getAll$(this.endPoint);
+  }
+
+  transformToCards(item: Resource[]): Card[] {
+    return item.map((item: Resource) => {
+      return {
+        title: item['name'],
+        description: item['description'] || '',
+      };
+    });
   }
 }

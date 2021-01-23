@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { CategoriesResolver } from './services/categories.resolver';
+import { ResourcesResolver } from './services/resources.resolver';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
     component: HomeComponent,
     resolve: {
       categories: CategoriesResolver,
+      resources: ResourcesResolver,
     },
   },
 ];

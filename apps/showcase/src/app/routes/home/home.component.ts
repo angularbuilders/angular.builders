@@ -1,7 +1,6 @@
 import { Card } from '@angular.builders/ui';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ResourcesService } from '../../core/services/resources.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { ResourcesService } from '../../core/services/resources.service';
 export class HomeComponent implements OnInit {
   searchText = '';
   categoryCards!: Card[];
-  featuredCards$!: Observable<Card[]>;
+  featuredCards!: Card[];
 
   constructor(
     private route: ActivatedRoute,
@@ -20,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryCards = this.route.snapshot.data.categories;
-    this.featuredCards$ = this.resource.getFeatured$();
+    this.featuredCards = this.route.snapshot.data.resources;
   }
   searchResources(searchText: string) {
     this.searchText = searchText;
