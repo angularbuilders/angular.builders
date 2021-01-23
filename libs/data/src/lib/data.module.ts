@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { API_CONFIG } from './categories.service';
-import { ApiConfig } from './models/ApiConfig';
+import { ApiConfig, API_CONFIG } from './models/ApiConfig';
+
 @NgModule({
   imports: [CommonModule, HttpClientModule],
 })

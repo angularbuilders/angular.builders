@@ -1,9 +1,8 @@
-import { Category, Resource, ResourcesService } from '@angular.builders/data';
 import { Card } from '@angular.builders/ui';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ResourcesService } from '../../core/services/resources.service';
 
 @Component({
   templateUrl: './home.component.html',
@@ -14,31 +13,17 @@ export class HomeComponent implements OnInit {
   categoryCards!: Card[];
   featuredCards$!: Observable<Card[]>;
 
-  // ToDo: Take transformation functions out of the component
-
   constructor(
     private route: ActivatedRoute,
     private resource: ResourcesService
   ) {}
 
   ngOnInit(): void {
-    const categories = this.route.snapshot.data.categories;
-    this.categoryCards = categories.map((category: Category) => {
-      return { title: category.name, description: category.description };
-    });
-    this.featuredCards$ = this.resource.getFeatured$().pipe(
-      map((resources: Resource[]) => {
-        return resources.map((resource: Resource) => {
-          return {
-            title: resource.name,
-            description: resource.description || '',
-          };
-        });
-      })
-    );
+    this.categoryCards = this.route.snapshot.data.categories;
+    this.featuredCards$ = this.resource.getFeatured$();
   }
   searchResources(searchText: string) {
-    // ToDo: dispatch action
     this.searchText = searchText;
+    console.log('ToDo: dispatch action ' + this.searchText);
   }
 }
