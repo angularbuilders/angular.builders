@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ResourcesService } from '../../core/services/resources.service';
 
 @Component({
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'ab-showcase-gallery',
+  templateUrl: './gallery.component.html',
+  styleUrls: ['./gallery.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class GalleryComponent implements OnInit {
   searchText = '';
   categoryCards!: Card[];
   featuredCards!: Card[];

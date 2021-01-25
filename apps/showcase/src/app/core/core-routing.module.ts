@@ -10,6 +10,15 @@ import {
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () =>
+      import('../routes/gallery/gallery.module').then((m) => m.GalleryModule),
+    data: {
+      pageTitle: 'Gallery',
+      pageDescription: 'The gallery of resources for Angular developers',
+    },
+  },
+  {
     path: 'auth',
     loadChildren: () =>
       import('@angular.builders/auth').then((module) => module.AuthModule),
@@ -17,15 +26,6 @@ const routes: Routes = [
       pageTitle: 'Authorization',
       pageDescription: 'Autentication and authorization pages',
       hideHeader: true,
-    },
-  },
-  {
-    path: '',
-    loadChildren: () =>
-      import('../routes/home/home.module').then((m) => m.HomeModule),
-    data: {
-      pageTitle: 'Gallery',
-      pageDescription: 'The gallery of resources for Angular developers',
     },
   },
   {
