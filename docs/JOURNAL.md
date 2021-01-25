@@ -216,3 +216,78 @@ Se recomienda configurarlo para todas las aplicaciones en `angular.json`.
 ```
 
 > 🦉 Como regla general es mejor exponer objetos que tipos primitivos (_avoid primitive obsession_). Pero esto implica usar alguna técnica de **inmutabilidad** y enviar clones para cada cambio.
+
+---
+
+# Navegación y datos
+
+Usar json-server en modo desarrollo: `npm run start:api`
+
+## Ejecuciones previas a la navegación: Resolvers y guards
+
+### Resolver
+
+Asociado al enrutador de negocio _lazy_
+
+`ng g resolver routes/home/services/categories`
+
+### Servicio de datos
+
+En la librería propia de datos
+
+`ng g service categories --project=data`
+
+resolvers
+
+data service
+interfaces
+environment injection token
+
+### HeadService for SEO and metadata...
+
+`ng generate @schematics/angular:service --name=services/head --project=ui`
+
+### RouterEvent
+
+on main Router `apps\showcase\src\app\core\core-routing.module.ts`
+
+## route for search
+
+`ng g m --name=routes/search --module=core/core.module --route=search --routing --no-interactive`
+
+reuse similar layout than home page
+
+`ng g c --name=routes/search/search-header --skipTests`
+
+`ng g c --name=routes/search/search-gallery-resources --skipTests`
+
+use query parameters
+
+      this.router.navigate(['/search'], {
+      queryParams: { term: this.searchText, sortBy: 'name' },
+    });
+
+constructor(route: ActivatedRoute) {
+this.searchParams$ = route.queryParams;
+}
+
+change params
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: searchParams,
+      queryParamsHandling: 'merge',
+    });
+
+> ⚠ Renamed home to gallery
+
+## route for one resource
+
+`ng g m --name=routes/items/show --module=core/core.module --route=items:id --routing --no-interactive`
+`ng g m --name=routes/items/new --module=core/core.module --route=items/new --routing --no-interactive`
+
+## 👮‍♀️ Guards
+
+/items/new' protected.
+
+/items/:id from params to observable (pending switchMap...)

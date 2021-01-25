@@ -6,16 +6,22 @@ import { FormsModule } from '@angular/forms';
 import { GalleryCategoriesComponent } from './gallery-categories/gallery-categories.component';
 import { GalleryFeaturedComponent } from './gallery-featured/gallery-featured.component';
 import { GalleryHeaderComponent } from './gallery-header/gallery-header.component';
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home.component';
+import { GalleryRoutingModule } from './gallery-routing.module';
+import { GalleryComponent } from './gallery.component';
 
 @NgModule({
   declarations: [
-    HomeComponent,
+    GalleryComponent,
     GalleryHeaderComponent,
     GalleryCategoriesComponent,
     GalleryFeaturedComponent,
   ],
-  imports: [CommonModule, FormsModule, HomeRoutingModule, UiModule, DataModule],
+  imports: [
+    CommonModule,
+    GalleryRoutingModule,
+    UiModule,
+    DataModule,
+    FormsModule,
+  ],
 })
-export class HomeModule {}
+export class GalleryModule {}

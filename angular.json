@@ -6,6 +6,10 @@
       "root": "apps/showcase",
       "sourceRoot": "apps/showcase/src",
       "prefix": "ab-showcase",
+      "@schematics/angular:component": {
+        "export": false,
+        "change-detection": "OnPush"
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -332,11 +336,12 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "842958f6-b552-4218-9759-534581ca2f2c"
   },
   "schematics": {
     "@schematics/angular:component": {
-      "export": "false",
+      "export": false,
       "change-detection": "OnPush"
     },
     "@nrwl/angular": {

@@ -1,0 +1,11 @@
+<div *ngIf="searchParams$ | async as searchParams">
+  <ab-showcase-search-header
+    [term]="searchParams.term"
+    [sortBy]="searchParams.sortBy"
+    (search)="search($event)"
+  >
+  </ab-showcase-search-header>
+</div>
+<pre>
+  <p>To do:... show filtered results</p>
+</pre>

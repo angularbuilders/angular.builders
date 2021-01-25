@@ -13,13 +13,15 @@ import {
 })
 export class GalleryHeaderComponent {
   @Output() search = new EventEmitter<string>();
-  searchText!: string;
+  searchTerm!: string;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSearchChange(event: any) {
-    this.searchText = event.target.value;
+    this.searchTerm = event.target.value;
+    console.log(this.searchTerm);
   }
   onSearchSubmit() {
-    this.search.next(this.searchText);
+    console.log(this.searchTerm);
+    this.search.next(this.searchTerm);
   }
 }
