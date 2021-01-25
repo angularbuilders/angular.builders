@@ -250,3 +250,7 @@ environment injection token
 ### RouterEvent
 
 on main Router `apps\showcase\src\app\core\core-routing.module.ts`
+
+## route for search
+
+`ng g m --name=routes/search --module=core/core.module --route=search --routing --no-interactive`
