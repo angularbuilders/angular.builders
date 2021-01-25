@@ -1,4 +1,4 @@
-export interface Resource {
+export interface Item {
   id: string;
   name: string;
   categoryId: string;

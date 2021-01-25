@@ -16,13 +16,13 @@ export class RestService<T> {
   }
 
   getById$(endpoint: string, id: string) {
-    return this.http.get<T[]>(this.makeUrl(endpoint, id));
+    return this.http.get<T>(this.makeUrl(endpoint, id));
   }
 
   private makeUrl(endPoint: string, id?: string) {
-    const endPointUrl = this.apiConfig.url + endPoint;
+    let endPointUrl = this.apiConfig.url + endPoint;
     if (id) {
-      endPoint += '/' + id;
+      endPointUrl += '/' + id;
     }
     return endPointUrl;
   }

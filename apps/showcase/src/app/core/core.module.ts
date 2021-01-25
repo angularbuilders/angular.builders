@@ -1,3 +1,4 @@
+import { AuthModule } from '@angular.builders/auth';
 import { DataModule } from '@angular.builders/data';
 import { UiModule } from '@angular.builders/ui';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { ShellComponent } from './shell/shell.component';
     CommonModule,
     CoreRoutingModule,
     UiModule,
+    AuthModule,
     DataModule.forRoot(environment.apiConfig),
   ],
   exports: [ShellComponent],

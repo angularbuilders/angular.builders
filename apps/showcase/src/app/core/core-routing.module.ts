@@ -1,3 +1,4 @@
+import { AuthenticatedGuard } from '@angular.builders/auth';
 import { HeadService } from '@angular.builders/ui';
 import { NgModule } from '@angular/core';
 import {
@@ -36,6 +37,28 @@ const routes: Routes = [
       pageTitle: 'Search results',
       pageDescription:
         'Search results for resources on Angular Builders showcase database',
+    },
+  },
+
+  {
+    path: 'items/new',
+    canActivate: [AuthenticatedGuard],
+    canActivateChild: [AuthenticatedGuard],
+    canLoad: [AuthenticatedGuard],
+    loadChildren: () =>
+      import('../routes/items/new/new.module').then((m) => m.NewModule),
+    data: {
+      pageTitle: 'GUARDED !!! Add a new resource',
+      pageDescription: 'Add a new resource for Angular developers',
+    },
+  },
+  {
+    path: 'items/:id',
+    loadChildren: () =>
+      import('../routes/items/show/show.module').then((m) => m.ShowModule),
+    data: {
+      pageTitle: 'Gallery',
+      pageDescription: 'Show details of the items',
     },
   },
 ];

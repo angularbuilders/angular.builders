@@ -1,19 +1,19 @@
 {
   "categories": [
     {
-      "id": "1",
+      "id": "libraries",
       "name": "Libraries",
       "description": "Packages or source code to depend on",
       "ownerId": "albertobasalo"
     },
     {
-      "id": "2",
+      "id": "ui-components",
       "name": "UI components",
       "description": "Presentational frameworks and utilities",
       "ownerId": "albertobasalo"
     },
     {
-      "id": "4",
+      "id": "courses",
       "name": "Courses",
       "description": "Video, live or presential classes.",
       "ownerId": "albertobasalo"
@@ -21,16 +21,16 @@
   ],
   "resources": [
     {
-      "id": "1",
-      "categoryId": "1",
+      "id": "rxjs",
+      "categoryId": "libraries",
       "name": "RxJs",
       "description": "Asynchronous and event-based programs by using observable sequences",
       "url": "https://rxjs-dev.firebaseapp.com/guide/overview",
       "ownerId": "albertobasalo"
     },
     {
-      "id": "3",
-      "categoryId": "2",
+      "id": "taiga-ui",
+      "categoryId": "ui-components",
       "name": "Taiga UI",
       "description": "Powerful set of customizable components",
       "url": "https://taiga-ui.dev/",

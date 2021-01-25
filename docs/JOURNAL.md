@@ -278,3 +278,16 @@ change params
       queryParams: searchParams,
       queryParamsHandling: 'merge',
     });
+
+> ⚠ Renamed home to gallery
+
+## route for one resource
+
+`ng g m --name=routes/items/show --module=core/core.module --route=items:id --routing --no-interactive`
+`ng g m --name=routes/items/new --module=core/core.module --route=items/new --routing --no-interactive`
+
+## 👮‍♀️ Guards
+
+/items/new' protected.
+
+/items/:id from params to observable (pending switchMap...)
