@@ -242,3 +242,11 @@ resolvers
 data service
 interfaces
 environment injection token
+
+### HeadService for SEO and metadata...
+
+`ng generate @schematics/angular:service --name=services/head --project=ui`
+
+### RouterEvent
+
+on main Router `apps\showcase\src\app\core\core-routing.module.ts`
