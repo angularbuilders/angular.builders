@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { ItemsResolver } from './items.resolver';
 
-import { ResourcesResolver } from './resources.resolver';
-
-describe('ResourcesResolver', () => {
-  let resolver: ResourcesResolver;
+describe('ItemsResolver', () => {
+  let resolver: ItemsResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    resolver = TestBed.inject(ResourcesResolver);
+    resolver = TestBed.inject(ItemsResolver);
   });
 
   it('should be created', () => {

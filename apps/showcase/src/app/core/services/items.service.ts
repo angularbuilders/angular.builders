@@ -1,12 +1,12 @@
 import { RestService } from '@angular.builders/data';
 import { Card } from '@angular.builders/ui';
 import { Injectable } from '@angular/core';
-import { Item } from '../models/Resource';
+import { Item } from '../models/Item';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ResourcesService {
+export class ItemsService {
   private endPoint = 'resources';
   constructor(private rest: RestService<Item>) {}
 

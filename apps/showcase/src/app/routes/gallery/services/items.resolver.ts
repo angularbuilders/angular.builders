@@ -9,13 +9,13 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ResourcesService } from '../../../core/services/resources.service';
+import { ItemsService } from '../../../core/services/items.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ResourcesResolver implements Resolve<Card[]> {
-  constructor(private resources: ResourcesService) {}
+export class ItemsResolver implements Resolve<Card[]> {
+  constructor(private resources: ItemsService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,

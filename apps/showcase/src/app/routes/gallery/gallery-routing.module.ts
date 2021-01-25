@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GalleryComponent } from './gallery.component';
 import { CategoriesResolver } from './services/categories.resolver';
-import { ResourcesResolver } from './services/resources.resolver';
+import { ItemsResolver } from './services/items.resolver';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
     component: GalleryComponent,
     resolve: {
       categories: CategoriesResolver,
-      resources: ResourcesResolver,
+      resources: ItemsResolver,
     },
   },
 ];

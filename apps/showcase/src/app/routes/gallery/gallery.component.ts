@@ -1,7 +1,7 @@
 import { Card } from '@angular.builders/ui';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResourcesService } from '../../core/services/resources.service';
+import { ItemsService } from '../../core/services/items.service';
 
 @Component({
   selector: 'ab-showcase-gallery',
@@ -16,7 +16,7 @@ export class GalleryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private resource: ResourcesService
+    private resource: ItemsService
   ) {}
 
   ngOnInit(): void {
