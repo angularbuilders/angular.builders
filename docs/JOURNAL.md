@@ -254,3 +254,27 @@ on main Router `apps\showcase\src\app\core\core-routing.module.ts`
 ## route for search
 
 `ng g m --name=routes/search --module=core/core.module --route=search --routing --no-interactive`
+
+reuse similar layout than home page
+
+`ng g c --name=routes/search/search-header --skipTests`
+
+`ng g c --name=routes/search/search-gallery-resources --skipTests`
+
+use query parameters
+
+      this.router.navigate(['/search'], {
+      queryParams: { term: this.searchText, sortBy: 'name' },
+    });
+
+constructor(route: ActivatedRoute) {
+this.searchParams$ = route.queryParams;
+}
+
+change params
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: searchParams,
+      queryParamsHandling: 'merge',
+    });

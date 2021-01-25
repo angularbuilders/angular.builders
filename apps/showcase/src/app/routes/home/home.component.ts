@@ -1,6 +1,6 @@
 import { Card } from '@angular.builders/ui';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResourcesService } from '../../core/services/resources.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private resource: ResourcesService
   ) {}
 
@@ -21,8 +22,12 @@ export class HomeComponent implements OnInit {
     this.categoryCards = this.route.snapshot.data.categories;
     this.featuredCards = this.route.snapshot.data.resources;
   }
-  searchResources(searchText: string) {
-    this.searchText = searchText;
-    console.log('ToDo: dispatch action ' + this.searchText);
+  searchResources(searchText: string | unknown) {
+    if (typeof searchText === 'string') {
+      this.searchText = searchText;
+      this.router.navigate(['/search'], {
+        queryParams: { term: this.searchText, sortBy: 'name' },
+      });
+    }
   }
 }

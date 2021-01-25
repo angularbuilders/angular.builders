@@ -26,7 +26,16 @@ const routes: Routes = [
     data: {
       pageTitle: 'Gallery',
       pageDescription: 'The gallery of resources for Angular developers',
-      hideHeader: true,
+    },
+  },
+  {
+    path: 'search',
+    loadChildren: () =>
+      import('../routes/search/search.module').then((m) => m.SearchModule),
+    data: {
+      pageTitle: 'Search results',
+      pageDescription:
+        'Search results for resources on Angular Builders showcase database',
     },
   },
 ];
@@ -42,7 +51,7 @@ export class CoreRoutingModule {
     private headService: HeadService
   ) {
     this.router.events.subscribe((routerEvent) => {
-      console.log(routerEvent);
+      // console.log(routerEvent);
       if (routerEvent instanceof NavigationEnd) {
         console.warn('Do something with new URL ' + routerEvent.url);
         const routeData = this.activatedRoute.firstChild?.snapshot.data;

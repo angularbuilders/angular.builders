@@ -6,6 +6,10 @@
       "root": "apps/showcase",
       "sourceRoot": "apps/showcase/src",
       "prefix": "ab-showcase",
+      "@schematics/angular:component": {
+        "export": false,
+        "change-detection": "OnPush"
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -337,7 +341,7 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "export": "false",
+      "export": false,
       "change-detection": "OnPush"
     },
     "@nrwl/angular": {
