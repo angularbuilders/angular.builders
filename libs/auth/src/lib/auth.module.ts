@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
 
-    RouterModule.forChild([
+    RouterModule.forChild([{ path: 'login', loadChildren: () => import('./routes/login/login.module').then(m => m.LoginModule) }
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ]),
   ],

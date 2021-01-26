@@ -291,3 +291,11 @@ change params
 /items/new' protected.
 
 /items/:id from params to observable (pending switchMap...)
+
+---
+
+# 4 Forms
+
+## Login
+
+`ng g m --name=routes/login --project=auth --module=auth --route=login`
