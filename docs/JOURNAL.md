@@ -299,3 +299,9 @@ change params
 ## Login
 
 `ng g m --name=routes/login --project=auth --module=auth --route=login`
+
+Users service...
+
+## Activate
+
+`ng g m --name=routes/activate --project=auth --module=auth --route=activate:code`

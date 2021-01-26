@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "email": "a@b.c",
+      "name": "a@b.c",
+      "id": "a@b.c",
+      "atk": "secretRandomCode"
+    }
+  ],
   "categories": [
     {
       "id": "libraries",

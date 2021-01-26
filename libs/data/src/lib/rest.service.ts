@@ -19,6 +19,11 @@ export class RestService<T> {
     return this.http.get<T>(this.makeUrl(endpoint, id));
   }
 
+  post(endpoint: string, payload: T) {
+    console.log(payload);
+    return this.http.post<T>(this.makeUrl(endpoint), payload);
+  }
+
   private makeUrl(endPoint: string, id?: string) {
     let endPointUrl = this.apiConfig.url + endPoint;
     if (id) {
