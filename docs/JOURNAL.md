@@ -304,4 +304,6 @@ Users service...
 
 ## Activate
 
-`ng g m --name=routes/activate --project=auth --module=auth --route=activate:code`
+`ng g m --name=routes/activate --project=auth --module=auth --route=activate/:email/:code`
+
+> To do: get User by email, check atk and redirecto to home

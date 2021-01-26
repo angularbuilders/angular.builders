@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
+import { User } from '../models/User';
 @Component({
   selector: 'ab-auth-login',
   templateUrl: './login.component.html',
@@ -28,9 +29,11 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    console.log(this.form.value);
-    this.users.logIn(this.form.value).subscribe({
-      next: () => this.router.navigateByUrl('./auth/activate'),
+    const user = this.form.value as User;
+    console.log(user);
+    this.users.logIn(user).subscribe({
+      next: () =>
+        this.router.navigateByUrl(`/auth/activate/${user.email}/${user.atk}`),
     });
   }
 }

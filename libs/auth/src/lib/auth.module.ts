@@ -11,8 +11,13 @@ import { RouterModule } from '@angular/router';
         loadChildren: () =>
           import('./routes/login/login.module').then((m) => m.LoginModule),
       },
-      { path: 'activate:code', loadChildren: () => import('./routes/activate/activate.module').then(m => m.ActivateModule) },
-      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
+      {
+        path: 'activate/:email/:code',
+        loadChildren: () =>
+          import('./routes/activate/activate.module').then(
+            (m) => m.ActivateModule
+          ),
+      },
     ]),
   ],
 })

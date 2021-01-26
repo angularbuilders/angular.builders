@@ -10,7 +10,8 @@ export class ShellComponent {
   appHeading = 'Angular.Builders';
   headerLinks = [
     { url: '/', text: '🏠 Home' },
-    { url: './items/new', text: '➕ Add new' },
+    { url: './items/new', text: ' ➕ Add new' },
+    { url: './auth/login', text: ' 🔑 Log In' },
   ];
   developerText = 'Alberto Basalo';
   developerUrl = 'https://twitter.com/albertobasalo';
