@@ -304,10 +304,19 @@ Users service...
 
 ## Activate
 
-`ng g m --name=routes/activate --project=auth --module=auth --route=activate/:email/:code`
+`ng g m --name=routes/activate --project=auth --module=auth --route=activate/:email/:atk`
 
-> get User by email, check atk and redirecto to home
+> get User by email and atk and calls AuthService
+
+### users service
+
+data communication
+
+`ng g s --name=services/users --project=auth`
 
 ### auth service
 
-ng generate @schematics/angular:service --name=services/auth --project=auth
+checks and stores auth tokens
+perform redirections
+
+`ng g @s --name=services/auth --project=auth`
