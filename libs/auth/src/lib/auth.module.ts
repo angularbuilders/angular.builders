@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
           import('./routes/login/login.module').then((m) => m.LoginModule),
       },
       {
-        path: 'activate/:email/:code',
+        path: 'activate/:email/:atk',
         loadChildren: () =>
           import('./routes/activate/activate.module').then(
             (m) => m.ActivateModule

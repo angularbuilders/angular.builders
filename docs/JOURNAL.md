@@ -306,4 +306,8 @@ Users service...
 
 `ng g m --name=routes/activate --project=auth --module=auth --route=activate/:email/:code`
 
-> To do: get User by email, check atk and redirecto to home
+> get User by email, check atk and redirecto to home
+
+### auth service
+
+ng generate @schematics/angular:service --name=services/auth --project=auth

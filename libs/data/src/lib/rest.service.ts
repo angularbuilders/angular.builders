@@ -19,15 +19,22 @@ export class RestService<T> {
     return this.http.get<T>(this.makeUrl(endpoint, id));
   }
 
+  getByQuery$(endpoint: string, query: string) {
+    return this.http.get<T>(this.makeUrl(endpoint, '', query));
+  }
+
   post(endpoint: string, payload: T) {
     console.log(payload);
     return this.http.post<T>(this.makeUrl(endpoint), payload);
   }
 
-  private makeUrl(endPoint: string, id?: string) {
+  private makeUrl(endPoint: string, id?: string, query?: string) {
     let endPointUrl = this.apiConfig.url + endPoint;
     if (id) {
       endPointUrl += '/' + id;
+    }
+    if (query) {
+      endPointUrl += '?' + query;
     }
     return endPointUrl;
   }

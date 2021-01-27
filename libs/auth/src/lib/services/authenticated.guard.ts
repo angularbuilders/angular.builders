@@ -11,15 +11,14 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticatedGuard
   implements CanActivate, CanActivateChild, CanLoad {
-  private notAuthorized = '/';
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -29,11 +28,7 @@ export class AuthenticatedGuard
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.isAuthenticated()) {
-      return true;
-    } else {
-      return this.router.parseUrl(this.notAuthorized);
-    }
+    return this.checkIsAuthenticated();
   }
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
@@ -43,11 +38,7 @@ export class AuthenticatedGuard
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.isAuthenticated()) {
-      return true;
-    } else {
-      return this.router.parseUrl(this.notAuthorized);
-    }
+    return this.checkIsAuthenticated();
   }
   canLoad(
     route: Route,
@@ -57,13 +48,13 @@ export class AuthenticatedGuard
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.isAuthenticated()) {
+    return this.checkIsAuthenticated();
+  }
+  private checkIsAuthenticated() {
+    if (this.auth.isAuthenticated()) {
       return true;
     } else {
-      return this.router.parseUrl(this.notAuthorized);
+      return this.router.parseUrl(this.auth.loginUrl);
     }
-  }
-  private isAuthenticated() {
-    return false;
   }
 }
