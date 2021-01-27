@@ -30,9 +30,21 @@
       >
     </div>
     <div>
+      <label for="name">Home Page: </label>
+      <input
+        type="url"
+        placeholder="URL of the resource home"
+        formControlName="url"
+      />
+    </div>
+    <div>
       <label for="categoryId">Category: </label>
-      <select name="categoryId" formControlName="categoryId">
-        <option [value]="category.id" *ngFor="let category of categories">
+      <select name="categoryId" formControlName="categoryId" #categoryID>
+        <option
+          [value]="category.id"
+          *ngFor="let category of categories"
+          #categoryID
+        >
           {{ category.name }}
         </option>
       </select>
@@ -45,15 +57,25 @@
       >
     </div>
     <div>
-      <label for="name">Home Page: </label>
+      <label for="price">Price: </label>
       <input
-        type="url"
-        placeholder="URL of the resource home"
-        formControlName="url"
+        name="price"
+        type="number"
+        placeholder="Price for assitent"
+        formControlName="price"
       />
     </div>
-    <ab-showcase-event-sub-form formGroupName="event">
-    </ab-showcase-event-sub-form>
+    <div [ngSwitch]="categoryID.value">
+      <div *ngSwitchCase="'events'">
+        <ab-showcase-event-sub-form formGroupName="event">
+        </ab-showcase-event-sub-form>
+      </div>
+      <div *ngSwitchCase="'courses'">
+        <ab-showcase-course-sub-form formGroupName="course">
+        </ab-showcase-course-sub-form>
+      </div>
+      <div *ngSwitchDefault></div>
+    </div>
   </fieldset>
   <input type="submit" value="💾 Save" [disabled]="form.invalid" />
 </form>

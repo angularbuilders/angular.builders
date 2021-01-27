@@ -32,8 +32,14 @@ export class ItemFormComponent implements OnInit {
       categoryId: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.minLength(3)]),
       url: new FormControl(''),
+      price: new FormControl(0),
       event: new FormGroup({
-        price: new FormControl(9),
+        date: new FormControl(''),
+        location: new FormControl(''),
+      }),
+      course: new FormGroup({
+        date: new FormControl(''),
+        teacher: new FormControl(''),
       }),
     });
   }

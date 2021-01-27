@@ -98,32 +98,16 @@
       "id": "learn-angular-in-this-free-33-part-course-by-angular-expert-dan-wahlin"
     },
     {
-      "name": "ng España",
+      "name": "ngConf 2021",
       "categoryId": "events",
-      "description": "En España",
-      "url": "",
-      "price": 9,
-      "id": "ng-espaa"
-    },
-    {
-      "name": "Descuento 60%. sobre 99 € + IVA",
-      "categoryId": "events",
-      "description": "una prueba",
-      "url": "",
+      "description": "The World's Premier Angular Event",
+      "url": "https://www.2021.ng-conf.org/",
       "event": {
-        "price": 45
+        "price": null,
+        "date": "2021-04-22",
+        "location": "On Line"
       },
-      "id": "descuento-60-sobre-99-iva"
-    },
-    {
-      "name": "Oferta ALFA: Descuento 60% México",
-      "categoryId": "events",
-      "description": "",
-      "url": "",
-      "event": {
-        "price": 60
-      },
-      "id": "oferta-alfa-descuento-60-mxico"
+      "id": "ngconf-2021"
     }
   ]
 }

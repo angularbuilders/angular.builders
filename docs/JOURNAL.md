@@ -332,4 +332,7 @@ get categories and save item
 form and validation
 
 ng g c --name=routes/items/new/item-form --changeDetection=OnPush --no-interactive
+
 ng g c --name=routes/items/new/event-sub-form --changeDetection=OnPush --no-interactive
+
+ng g c --name=routes/items/new/course-sub-form --changeDetection=OnPush --no-interactive
