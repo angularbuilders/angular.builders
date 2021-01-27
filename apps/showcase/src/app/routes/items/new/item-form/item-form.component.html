@@ -1,0 +1,39 @@
+<form [formGroup]="form" (submit)="onSave()" #f>
+  <fieldset>
+    <div>
+      <label for="name">Name: </label>
+      <input
+        name="name"
+        type="text"
+        placeholder="Name of the resource"
+        formControlName="name"
+      />
+    </div>
+    <div>
+      <label for="description">Description: </label>
+      <input
+        name="description"
+        type="text"
+        placeholder="Description of the resource"
+        formControlName="description"
+      />
+    </div>
+    <div>
+      <label for="categoryId">Category: </label>
+      <select name="categoryId" formControlName="categoryId">
+        <option [value]="category.id" *ngFor="let category of categories">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label for="name">Home Page: </label>
+      <input
+        type="url"
+        placeholder="URL of the resource home"
+        formControlName="url"
+      />
+    </div>
+  </fieldset>
+  <input type="submit" value="💾 Save" [disabled]="form.invalid" />
+</form>

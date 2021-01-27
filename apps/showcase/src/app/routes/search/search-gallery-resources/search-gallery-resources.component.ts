@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ab-showcase-search-gallery-resources',
   templateUrl: './search-gallery-resources.component.html',
-  styleUrls: ['./search-gallery-resources.component.css']
+  styleUrls: ['./search-gallery-resources.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchGalleryResourcesComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

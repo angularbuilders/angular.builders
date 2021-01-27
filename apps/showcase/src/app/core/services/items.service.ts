@@ -18,6 +18,11 @@ export class ItemsService {
     return this.rest.getById$(this.endPoint, id);
   }
 
+  save$(item: Item) {
+    item.id = item.name.replace(' ', '-').trim().toLowerCase();
+    return this.rest.post$(this.endPoint, item);
+  }
+
   transformToCards(item: Item[]): Card[] {
     return item.map((item: Item) => {
       return {

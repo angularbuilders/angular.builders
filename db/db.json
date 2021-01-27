@@ -25,6 +25,24 @@
       "name": "Courses",
       "description": "Video, live or presential classes.",
       "ownerId": "albertobasalo"
+    },
+    {
+      "id": "books",
+      "name": "Books",
+      "description": "Paper or digital reading materials.",
+      "ownerId": "albertobasalo"
+    },
+    {
+      "id": "tools",
+      "name": "Tools",
+      "description": "Utilities for developers.",
+      "ownerId": "albertobasalo"
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "description": "Comunity meetups.",
+      "ownerId": "albertobasalo"
     }
   ],
   "resources": [
@@ -43,6 +61,27 @@
       "description": "Powerful set of customizable components",
       "url": "https://taiga-ui.dev/",
       "ownerId": "albertobasalo"
+    },
+    {
+      "name": "NgRev",
+      "categoryId": "tools",
+      "description": "Tool for reverse engineering of Angular applications",
+      "url": "https://github.com/mgechev/ngrev",
+      "id": "ngrev"
+    },
+    {
+      "name": "Enterprise Angular",
+      "categoryId": "books",
+      "description": "Free eBook About Enterprise-Scale Angular-Architectures",
+      "url": "https://www.angulararchitects.io/book",
+      "id": "enterprise-angular"
+    },
+    {
+      "name": "Ng Conf 2021",
+      "categoryId": "events",
+      "description": "The World's Premier Angular Event",
+      "url": "https://www.2021.ng-conf.org/",
+      "id": "ng-conf-2021"
     }
   ]
 }

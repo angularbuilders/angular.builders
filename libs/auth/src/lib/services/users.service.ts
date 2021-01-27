@@ -11,7 +11,7 @@ export class UsersService {
 
   logIn$(user: User) {
     this.fakeFillUser(user);
-    return this.rest.post(this.endPoint, user);
+    return this.rest.post$(this.endPoint, user);
   }
 
   getByEmailCredential$(userToken: Partial<User>) {

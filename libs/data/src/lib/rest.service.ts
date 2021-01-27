@@ -23,8 +23,7 @@ export class RestService<T> {
     return this.http.get<T>(this.makeUrl(endpoint, '', query));
   }
 
-  post(endpoint: string, payload: T) {
-    console.log(payload);
+  post$(endpoint: string, payload: T) {
     return this.http.post<T>(this.makeUrl(endpoint), payload);
   }
 
