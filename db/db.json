@@ -82,6 +82,13 @@
       "description": "The World's Premier Angular Event",
       "url": "https://www.2021.ng-conf.org/",
       "id": "ng-conf-2021"
+    },
+    {
+      "name": "Angular Material",
+      "categoryId": "ui-components",
+      "description": "Material Design components for Angular",
+      "url": "https://material.angular.io/",
+      "id": "angular-material"
     }
   ]
 }

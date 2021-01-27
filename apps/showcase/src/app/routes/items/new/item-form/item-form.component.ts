@@ -26,9 +26,9 @@ export class ItemFormComponent {
   form: FormGroup;
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       categoryId: new FormControl('', [Validators.required]),
-      description: new FormControl(''),
+      description: new FormControl('', [Validators.minLength(3)]),
       url: new FormControl(''),
     });
   }

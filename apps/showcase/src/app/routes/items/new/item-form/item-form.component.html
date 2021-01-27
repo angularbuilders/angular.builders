@@ -8,6 +8,10 @@
         placeholder="Name of the resource"
         formControlName="name"
       />
+      <span
+        *ngIf="form.controls['name'].touched && form.controls['name'].invalid"
+        ><em>* required min length of 2</em></span
+      >
     </div>
     <div>
       <label for="description">Description: </label>
@@ -17,6 +21,13 @@
         placeholder="Description of the resource"
         formControlName="description"
       />
+      <span
+        *ngIf="
+          form.controls['description'].touched &&
+          form.controls['description'].invalid
+        "
+        ><em>* required min length of 3</em></span
+      >
     </div>
     <div>
       <label for="categoryId">Category: </label>
@@ -25,6 +36,13 @@
           {{ category.name }}
         </option>
       </select>
+      <span
+        *ngIf="
+          form.controls['description'].touched &&
+          form.controls['description'].invalid
+        "
+        ><em>* required</em></span
+      >
     </div>
     <div>
       <label for="name">Home Page: </label>

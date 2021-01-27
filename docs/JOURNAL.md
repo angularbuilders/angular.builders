@@ -322,3 +322,11 @@ perform redirections
 `ng g @s --name=services/auth --project=auth`
 
 ## New Item
+
+### Smart Page
+
+get categories and save item
+
+### Dumb Organism
+
+form and validation
