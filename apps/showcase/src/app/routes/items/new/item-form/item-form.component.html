@@ -1,4 +1,4 @@
-<form [formGroup]="form" (submit)="onSave()" #f>
+<form *ngIf="form" [formGroup]="form" (submit)="onSave()" #f>
   <fieldset>
     <div>
       <label for="name">Name: </label>
@@ -52,6 +52,8 @@
         formControlName="url"
       />
     </div>
+    <ab-showcase-event-sub-form formGroupName="event">
+    </ab-showcase-event-sub-form>
   </fieldset>
   <input type="submit" value="💾 Save" [disabled]="form.invalid" />
 </form>

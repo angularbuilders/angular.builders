@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 import {
@@ -20,16 +21,20 @@ import { Item } from '../../../../core/models/Item';
   styleUrls: ['./item-form.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ItemFormComponent {
+export class ItemFormComponent implements OnInit {
   @Input() categories!: Category[];
   @Output() save = new EventEmitter<Item>();
-  form: FormGroup;
-  constructor(private fb: FormBuilder) {
+  form!: FormGroup;
+  constructor(private fb: FormBuilder) {}
+  ngOnInit(): void {
     this.form = this.fb.group({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       categoryId: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.minLength(3)]),
       url: new FormControl(''),
+      event: new FormGroup({
+        price: new FormControl(9),
+      }),
     });
   }
 

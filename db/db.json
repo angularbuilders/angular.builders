@@ -89,6 +89,41 @@
       "description": "Material Design components for Angular",
       "url": "https://material.angular.io/",
       "id": "angular-material"
+    },
+    {
+      "name": "Learn Angular in this free 33-part course by Angular-expert Dan Wahlin",
+      "categoryId": "courses",
+      "description": "In this course, Dan guides you through creating your very first Angular app using TypeScript. By completing the course you’ll add valuable skills to your toolbelt.",
+      "url": "https://www.freecodecamp.org/news/want-to-learn-angular-heres-our-free-33-part-course-by-dan-wahlin-fc2ff27ab451/",
+      "id": "learn-angular-in-this-free-33-part-course-by-angular-expert-dan-wahlin"
+    },
+    {
+      "name": "ng España",
+      "categoryId": "events",
+      "description": "En España",
+      "url": "",
+      "price": 9,
+      "id": "ng-espaa"
+    },
+    {
+      "name": "Descuento 60%. sobre 99 € + IVA",
+      "categoryId": "events",
+      "description": "una prueba",
+      "url": "",
+      "event": {
+        "price": 45
+      },
+      "id": "descuento-60-sobre-99-iva"
+    },
+    {
+      "name": "Oferta ALFA: Descuento 60% México",
+      "categoryId": "events",
+      "description": "",
+      "url": "",
+      "event": {
+        "price": 60
+      },
+      "id": "oferta-alfa-descuento-60-mxico"
     }
   ]
 }

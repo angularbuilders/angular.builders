@@ -1,0 +1,14 @@
+<ng-container
+  *ngIf="controlContainer.control"
+  [formGroup]="controlContainer.control"
+>
+  <div>
+    <label for="price">Name: </label>
+    <input
+      name="price"
+      type="number"
+      placeholder="Price for assitent"
+      formControlName="price"
+    />
+  </div>
+</ng-container>

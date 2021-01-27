@@ -19,7 +19,7 @@ export class ItemsService {
   }
 
   save$(item: Item) {
-    item.id = item.name.replace(' ', '-').trim().toLowerCase();
+    // item.id = item.name.replace(' ', '-').trim().toLowerCase();
     return this.rest.post$(this.endPoint, item);
   }
 
