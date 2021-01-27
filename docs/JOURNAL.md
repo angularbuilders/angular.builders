@@ -291,3 +291,48 @@ change params
 /items/new' protected.
 
 /items/:id from params to observable (pending switchMap...)
+
+---
+
+# 4 Forms
+
+## Login
+
+`ng g m --name=routes/login --project=auth --module=auth --route=login`
+
+Users service...
+
+## Activate
+
+`ng g m --name=routes/activate --project=auth --module=auth --route=activate/:email/:atk`
+
+> get User by email and atk and calls AuthService
+
+### users service
+
+data communication
+
+`ng g s --name=services/users --project=auth`
+
+### auth service
+
+checks and stores auth tokens
+perform redirections
+
+`ng g @s --name=services/auth --project=auth`
+
+## New Item
+
+### Smart Page
+
+get categories and save item
+
+### Dumb Organism
+
+form and validation
+
+ng g c --name=routes/items/new/item-form --changeDetection=OnPush --no-interactive
+
+ng g c --name=routes/items/new/event-sub-form --changeDetection=OnPush --no-interactive
+
+ng g c --name=routes/items/new/course-sub-form --changeDetection=OnPush --no-interactive

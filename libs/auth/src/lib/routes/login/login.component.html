@@ -1,0 +1,6 @@
+<form [formGroup]="form" (submit)="logIn()" #f>
+  <div>
+    <input type="email" placeholder="Email" formControlName="email" />
+  </div>
+  <input type="submit" value="Log in" [disabled]="form.invalid" />
+</form>

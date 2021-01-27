@@ -1,5 +1,5 @@
 import { Card } from '@angular.builders/ui';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemsService } from '../../core/services/items.service';
 
@@ -7,6 +7,7 @@ import { ItemsService } from '../../core/services/items.service';
   selector: 'ab-showcase-gallery',
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryComponent implements OnInit {
   searchText = '';

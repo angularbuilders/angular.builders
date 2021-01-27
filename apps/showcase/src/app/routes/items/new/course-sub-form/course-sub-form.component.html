@@ -1,0 +1,23 @@
+<ng-container
+  *ngIf="controlContainer.control"
+  [formGroup]="controlContainer.control"
+>
+  <div>
+    <label for="date">Date: </label>
+    <input
+      name="date"
+      type="date"
+      placeholder="When does it start?"
+      formControlName="date"
+    />
+  </div>
+  <div>
+    <label for="teacher">Teacher: </label>
+    <input
+      name="teacher"
+      type="text"
+      placeholder="Who is teaching?"
+      formControlName="teacher"
+    />
+  </div>
+</ng-container>

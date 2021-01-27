@@ -1,0 +1,9 @@
+<form [formGroup]="form" (submit)="activate()" #f>
+  <div>
+    <input type="email" placeholder="Email" formControlName="email" readonly />
+  </div>
+  <div>
+    <input type="text" placeholder="Activation Code" formControlName="atk" />
+  </div>
+  <input type="submit" value="Activate" [disabled]="form.invalid" />
+</form>

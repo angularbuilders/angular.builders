@@ -1,1 +1,5 @@
-<p>new works!</p>
+<ab-showcase-item-form
+  *ngIf="categories$ | async as categories"
+  [categories]="categories"
+  (save)="onSave($event)"
+></ab-showcase-item-form>

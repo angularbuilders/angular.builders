@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Item } from '../../../core/models/Item';
@@ -8,6 +8,7 @@ import { ItemsService } from '../../../core/services/items.service';
   selector: 'ab-showcase-show',
   templateUrl: './show.component.html',
   styleUrls: ['./show.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShowComponent implements OnInit {
   item$!: Observable<Item>;
