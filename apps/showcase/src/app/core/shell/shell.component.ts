@@ -10,6 +10,7 @@ export class ShellComponent {
   appHeading = 'Angular.Builders';
   headerLinks = [
     { url: '/', text: '🏠 Home' },
+    { url: './search', text: ' 🔎 Search' },
     { url: './items/new', text: ' ➕ Add new' },
     { url: './auth/login', text: ' 🔑 Log In' },
   ];

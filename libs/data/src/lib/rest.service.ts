@@ -25,7 +25,7 @@ export class RestService<T> {
   }
 
   getByQuery$(endpoint: string, query: string) {
-    return this.http.get<T>(this.makeUrl(endpoint, '', query));
+    return this.http.get<T[]>(this.makeUrl(endpoint, '', query));
   }
 
   post$(endpoint: string, payload: T) {

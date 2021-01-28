@@ -1,16 +1,11 @@
 <header>
   <h2>Search for the resource you want</h2>
-  <form (submit)="onSearchSubmit()">
+  <form>
     <input
       type="search"
       placeholder="Search for Angular resources"
       [value]="term"
-      (change)="onSearchChange($event)"
+      [formControl]="searchControl"
     />
-    <input type="submit" value="🔎" />
   </form>
-  <nav>
-    <span>{{ resultsCount }} Results</span>
-    <span> Sort By: {{ sortBy }} </span>
-  </nav>
 </header>

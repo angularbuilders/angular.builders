@@ -336,3 +336,17 @@ ng g c --name=routes/items/new/item-form --changeDetection=OnPush --no-interacti
 ng g c --name=routes/items/new/event-sub-form --changeDetection=OnPush --no-interactive
 
 ng g c --name=routes/items/new/course-sub-form --changeDetection=OnPush --no-interactive
+
+# 5 Datos asíncronos
+
+## Buscador reactivo
+
+### search-header
+
+Evitar llamadas innecesarias (debounceTime y distinct)
+
+> No filtrar `.pipe(filter((searchTerm) => searchTerm.length >= 2))` porque no limpia la interfaz (es responsabilidad del servicio)
+
+> atención al startWith
+
+## Mejora con un store reactivo
