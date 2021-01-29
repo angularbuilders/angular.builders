@@ -4,8 +4,10 @@
     <input
       type="search"
       placeholder="Search for Angular resources"
-      [value]="term"
-      [formControl]="searchControl"
+      [formControl]="termControl"
     />
   </form>
 </header>
+<pre>
+  term: {{ term }}
+</pre>

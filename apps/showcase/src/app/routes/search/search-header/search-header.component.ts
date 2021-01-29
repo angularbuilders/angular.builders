@@ -8,7 +8,6 @@ import {
 import { FormBuilder, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Category } from '../../../core/models/Category';
-import { SearchParams } from '../../../core/models/SearchParams';
 
 @Component({
   selector: 'ab-showcase-search-header',
@@ -18,25 +17,19 @@ import { SearchParams } from '../../../core/models/SearchParams';
 })
 export class SearchHeaderComponent {
   @Input() term = '';
-  @Output() search = new EventEmitter<SearchParams>();
-  searchControl: FormControl;
+  @Output() search = new EventEmitter<string>();
+  termControl!: FormControl;
   category!: Category;
 
-  constructor(private fb: FormBuilder) {
-    this.searchControl = this.fb.control('');
-  }
+  constructor(private fb: FormBuilder) {}
   ngOnInit(): void {
-    this.searchControl.valueChanges
-      .pipe(
-        // ! This way does not clear the input box
-        // filter((searchTerm) => searchTerm.length >= 2),
-        debounceTime(500),
-        distinctUntilChanged()
-      )
+    this.termControl = this.fb.control(this.term);
+    this.termControl.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe({
         next: (searchTerm) => {
           this.term = searchTerm;
-          this.search.next({ term: this.term });
+          this.search.next(this.term);
         },
       });
   }

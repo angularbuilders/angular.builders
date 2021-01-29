@@ -6,7 +6,6 @@ type idName = {
   id: string;
   name: string;
 };
-
 @Injectable({
   providedIn: 'root',
 })

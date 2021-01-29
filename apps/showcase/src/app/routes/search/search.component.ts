@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { filter, map, startWith, switchMap, tap } from 'rxjs/operators';
-import { Item } from '../../core/models/Item';
-import { SearchParams } from '../../core/models/SearchParams';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ItemsService } from '../../core/services/items.service';
+import { SearchStoreService } from './services/search-store.service';
 
 @Component({
   selector: 'ab-showcase-search',
@@ -13,47 +12,39 @@ import { ItemsService } from '../../core/services/items.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent {
-  searchParams: SearchParams = {
-    term: '',
-  };
-  searchParams$: Observable<SearchParams>;
-  results$: Observable<Item[]> = of([]);
+  params$: Observable<{ term: string; sortBy: string }>;
+  results$ = this.store.selectResults$();
+  status$ = this.store.selectStatus$();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private items: ItemsService
+    private items: ItemsService,
+    private store: SearchStoreService
   ) {
-    const queryParams$ = route.queryParams as Observable<SearchParams>;
-    this.searchParams$ = queryParams$.pipe(
-      map((searchParams) => {
-        return {
-          term: searchParams.term ?? '',
-          sortBy: searchParams.sortBy ?? 'name',
-        };
-      }),
-      tap((searchParams) => (this.searchParams = searchParams))
-    );
-    // ToDo: alert user about minimum length
-    this.results$ = this.searchParams$.pipe(
-      filter((searchParams: SearchParams) => searchParams.term.length >= 2),
-      switchMap((searchParams: SearchParams) =>
-        this.items.getByQuery$(searchParams).pipe(startWith([]))
-      )
+    route.queryParams.subscribe({
+      next: (queryParams) => this.store.storeQueryParams(queryParams),
+    });
+    this.params$ = this.store.selectParams$().pipe(
+      tap((params) => {
+        if (params.term.length >= 2) {
+          this.items.getByQuery$(params).subscribe({
+            next: (items) => this.store.storeItems(items),
+            error: (error) => this.store.storeError(error),
+          });
+        } else {
+          this.store.storeItems([]);
+        }
+      })
     );
   }
 
-  search(searchParams: SearchParams) {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: searchParams,
-      queryParamsHandling: 'merge',
-    });
-    // if (searchParams.term.length >= 2) {
-    //   this.results$ = this.items.getByQuery$(searchParams).pipe(startWith([]));
-    // } else {
-
-    //   this.results$ = of([]);
-    // }
+  search(term: string) {
+    if (term != '[object Event]')
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { term: term },
+        queryParamsHandling: 'merge',
+      });
   }
 }

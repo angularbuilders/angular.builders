@@ -352,9 +352,13 @@ Evitar llamadas innecesarias (debounceTime y distinct)
 > atención al startWith
 
 ## Mejora con un store reactivo
+
 ## Store Services
 
 ng generate @schematics/angular:service --name=direct-store --project=data
 ng generate @schematics/angular:service --name=functional-store --project=data
 ng generate @schematics/angular:service --name=collection-store --project=data
 
+## Search Store
+
+ng generate @schematics/angular:service --name=SearchStore --path=apps/showcase/src/app/routes/search/services
