@@ -18,7 +18,7 @@ export class DirectStoreService<StateType> {
 
   constructor(private readonly initialState: StateType) {}
 
-  protected deepClone(source: StateType): StateType {
+  private deepClone(source: StateType): StateType {
     if (Array.isArray(source)) {
       return ([...source] as unknown) as StateType;
     } else {

@@ -12,13 +12,13 @@ export class FunctionalStoreService<
   }
 
   public dispatch(action: (state: StateType) => StateType) {
-    const currentState = this.deepClone(this.stateSubject$.value);
+    const currentState = this.state;
     const newState = action(currentState);
-    this.stateSubject$.next(this.deepClone(newState));
+    this.state = newState;
   }
 
   public select$<SelectionType>(selector: (state: StateType) => SelectionType) {
-    return this.stateSubject$.pipe(
+    return this.state$.pipe(
       map<StateType, SelectionType>(selector),
       distinctUntilChanged()
     );

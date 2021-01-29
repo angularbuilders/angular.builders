@@ -22,7 +22,6 @@ export class CollectionStoreService<
     const currentState = this.state;
     return this.findByKey(currentState, keyValue);
   }
-
   update(keyValue: unknown, changed: Partial<ElementsType>) {
     const udpateAction = (state: ElementsType[]) => {
       const currentItem = this.findByKey(state, keyValue);

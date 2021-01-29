@@ -1,3 +1,4 @@
+import { skip } from 'rxjs/operators';
 import { FunctionalStoreService } from './functional-store.service';
 
 interface Item {
@@ -12,6 +13,12 @@ class ItemsStore extends FunctionalStoreService<Item[]> {
   addItem(item: Item) {
     const addAction = (state: Item[]) => [...state, item];
     this.dispatch(addAction);
+  }
+}
+
+class ItemStore extends FunctionalStoreService<Item> {
+  constructor() {
+    super({ id: '1', name: '1' });
   }
 }
 
@@ -60,5 +67,19 @@ fdescribe('FunctionalStoreService', () => {
         done();
       },
     });
+  });
+  it('should be used with single objects', (done) => {
+    const itemStore: ItemStore = new ItemStore();
+    const selector = (item: Item) => item.name;
+    itemStore
+      .select$(selector)
+      .pipe(skip(1))
+      .subscribe({
+        next: (result) => {
+          expect(result).toEqual('changed');
+          done();
+        },
+      });
+    itemStore.dispatch((item) => ({ ...item, name: 'changed' }));
   });
 });

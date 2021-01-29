@@ -83,35 +83,42 @@ describe('CollectionStoreService', () => {
     itemsStore.delete('1');
     expect(itemsStore.read('1')).toEqual(undefined);
   });
-  it('should emit changes  for crud actions ', (done) => {
+  it('should emit changes for crud actions ', (done) => {
     const itemsStore: ItemsStore = new ItemsStore();
+    let actual: Item[] = [];
     itemsStore.state$.subscribe({
-      next: (result) => console.log(result),
+      next: (result) => (actual = result),
     });
     itemsStore.create({ id: '1', name: '' });
     itemsStore.create({ id: '2', name: '' });
     itemsStore.delete('1');
-    expect(true).toBeTruthy();
+    expect(actual).toEqual([{ id: '2', name: '' }]);
     done();
   });
-  // it('should emit changes of length for crud actions ', (done) => {
-  //   const itemsStore: ItemsStore = new ItemsStore();
-  //   const selector = (items: Item[]) => items.length;
-  //   itemsStore
-  //     .select$(selector)
-  //     .pipe(
-  //       tap((v) => console.log(v)),
-  //       scan((a: number[], c) => [...a, c], []),
-  //       tap((v) => console.log(v))
-  //     )
-  //     .subscribe({
-  //       next: (result) => {
-  //         expect(result).toEqual([0, 1, 0]);
-  //         done();
-  //       },
-  //     });
-  //   itemsStore.create({ id: '1', name: '' });
-  //   itemsStore.create({ id: '2', name: '' });
-  //   itemsStore.delete('1');
-  // });
+  it('should emit changes of length for crud actions ', (done) => {
+    const itemsStore: ItemsStore = new ItemsStore();
+    const actual: number[] = [];
+    const selector = (items: Item[]) => items.length;
+    itemsStore.select$(selector).subscribe({
+      next: (result) => actual.push(result),
+    });
+    itemsStore.create({ id: '1', name: '' });
+    itemsStore.create({ id: '2', name: '' });
+    itemsStore.delete('1');
+    expect(actual).toEqual([0, 1, 2, 1]);
+    done();
+  });
+  it('should take care of order ', (done) => {
+    const itemsStore: ItemsStore = new ItemsStore();
+    const actual: number[] = [];
+    itemsStore.create({ id: '1', name: '' });
+    const selector = (items: Item[]) => items.length;
+    itemsStore.select$(selector).subscribe({
+      next: (result) => actual.push(result),
+    });
+    itemsStore.create({ id: '2', name: '' });
+    itemsStore.delete('1');
+    expect(actual).toEqual([1, 2, 1]);
+    done();
+  });
 });

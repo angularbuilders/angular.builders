@@ -341,3 +341,4 @@ ng g c --name=routes/items/new/course-sub-form --changeDetection=OnPush --no-int
 
 ng generate @schematics/angular:service --name=direct-store --project=data
 ng generate @schematics/angular:service --name=functional-store --project=data
+ng generate @schematics/angular:service --name=collection-store --project=data
