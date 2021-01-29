@@ -336,3 +336,8 @@ ng g c --name=routes/items/new/item-form --changeDetection=OnPush --no-interacti
 ng g c --name=routes/items/new/event-sub-form --changeDetection=OnPush --no-interactive
 
 ng g c --name=routes/items/new/course-sub-form --changeDetection=OnPush --no-interactive
+
+## Store Services
+
+ng generate @schematics/angular:service --name=direct-store --project=data
+ng generate @schematics/angular:service --name=functional-store --project=data

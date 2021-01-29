@@ -9,10 +9,9 @@ class ItemsStore extends DirectStoreService<Item[]> {
   constructor() {
     super([]);
   }
-  addItem(item: Item) {
+  addItem(newItem: Item) {
     const currentItems = this.state;
-    currentItems.push(item);
-    this.state = currentItems;
+    this.state = [...currentItems, newItem];
   }
 }
 
