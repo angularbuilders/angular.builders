@@ -5,6 +5,8 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Category } from '../../../core/models/Category';
 import { SearchParams } from '../../../core/models/SearchParams';
 
@@ -15,17 +17,27 @@ import { SearchParams } from '../../../core/models/SearchParams';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchHeaderComponent {
-  @Input() resultsCount = 0;
-  @Input() sortBy: string | undefined = 'Name';
   @Input() term = '';
   @Output() search = new EventEmitter<SearchParams>();
+  searchControl: FormControl;
   category!: Category;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSearchChange(event: any) {
-    this.term = event.target.value;
+  constructor(private fb: FormBuilder) {
+    this.searchControl = this.fb.control('');
   }
-  onSearchSubmit() {
-    this.search.next({ term: this.term, sortBy: this.sortBy });
+  ngOnInit(): void {
+    this.searchControl.valueChanges
+      .pipe(
+        // ! This way does not clear the input box
+        // filter((searchTerm) => searchTerm.length >= 2),
+        debounceTime(500),
+        distinctUntilChanged()
+      )
+      .subscribe({
+        next: (searchTerm) => {
+          this.term = searchTerm;
+          this.search.next({ term: this.term });
+        },
+      });
   }
 }

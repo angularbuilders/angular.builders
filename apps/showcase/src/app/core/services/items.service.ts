@@ -2,6 +2,7 @@ import { RestService } from '@angular.builders/data';
 import { Card } from '@angular.builders/ui';
 import { Injectable } from '@angular/core';
 import { Item } from '../models/Item';
+import { SearchParams } from '../models/SearchParams';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,12 @@ export class ItemsService {
     return this.rest.getById$(this.endPoint, id);
   }
 
+  getByQuery$(searchParams: SearchParams) {
+    const query = `q=${searchParams.term}`;
+    return this.rest.getByQuery$(this.endPoint, query);
+  }
+
   save$(item: Item) {
-    // item.id = item.name.replace(' ', '-').trim().toLowerCase();
     return this.rest.post$(this.endPoint, item);
   }
 

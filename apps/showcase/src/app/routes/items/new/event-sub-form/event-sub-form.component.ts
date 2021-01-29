@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ControlContainer } from '@angular/forms';
+import { ControlContainer, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'ab-showcase-event-sub-form',
@@ -8,5 +8,6 @@ import { ControlContainer } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventSubFormComponent {
+  subForm = this.controlContainer.control as FormGroup;
   constructor(public controlContainer: ControlContainer) {}
 }
