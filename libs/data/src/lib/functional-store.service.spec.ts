@@ -33,8 +33,10 @@ fdescribe('FunctionalStoreService', () => {
     const itemsStore: ItemsStore = new ItemsStore();
     itemsStore.addItem({ id: '', name: '' });
     itemsStore.state$.subscribe({
-      next: (result) => expect(result).toEqual([{ id: '', name: '' }]),
-      complete: done(),
+      next: (result) => {
+        expect(result).toEqual([{ id: '', name: '' }]);
+        done();
+      },
     });
   });
   it('should emit changes on a full selection', (done) => {
@@ -42,17 +44,21 @@ fdescribe('FunctionalStoreService', () => {
     itemsStore.addItem({ id: '', name: '' });
     const selector = (items: Item[]) => items;
     itemsStore.select$(selector).subscribe({
-      next: (result) => expect(result).toEqual([{ id: '', name: '' }]),
-      complete: done(),
+      next: (result) => {
+        expect(result).toEqual([{ id: '', name: '' }]);
+        done();
+      },
     });
   });
-  it('should emit changes of length ', (done) => {
+  it('should emit changes of length', (done) => {
     const itemsStore: ItemsStore = new ItemsStore();
     itemsStore.addItem({ id: '', name: '' });
     const selector = (items: Item[]) => items.length;
     itemsStore.select$(selector).subscribe({
-      next: (result) => expect(result).toEqual(1),
-      complete: done(),
+      next: (result) => {
+        expect(result).toEqual(1);
+        done();
+      },
     });
   });
 });
