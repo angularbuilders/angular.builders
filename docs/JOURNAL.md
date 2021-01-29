@@ -337,6 +337,8 @@ ng g c --name=routes/items/new/event-sub-form --changeDetection=OnPush --no-inte
 
 ng g c --name=routes/items/new/course-sub-form --changeDetection=OnPush --no-interactive
 
+---
+
 # 5 Datos asíncronos
 
 ## Buscador reactivo
@@ -350,3 +352,9 @@ Evitar llamadas innecesarias (debounceTime y distinct)
 > atención al startWith
 
 ## Mejora con un store reactivo
+## Store Services
+
+ng generate @schematics/angular:service --name=direct-store --project=data
+ng generate @schematics/angular:service --name=functional-store --project=data
+ng generate @schematics/angular:service --name=collection-store --project=data
+
