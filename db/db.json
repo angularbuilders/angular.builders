@@ -45,7 +45,7 @@
       "ownerId": "albertobasalo"
     }
   ],
-  "resources": [
+  "items": [
     {
       "id": "rxjs",
       "categoryId": "libraries",

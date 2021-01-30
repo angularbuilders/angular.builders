@@ -1,9 +1,5 @@
-import { Injectable } from '@angular/core';
 import { FunctionalStoreService } from './functional-store.service';
 
-@Injectable({
-  providedIn: 'root',
-})
 export class CollectionStoreService<
   ElementsType
 > extends FunctionalStoreService<ElementsType[]> {
@@ -12,6 +8,14 @@ export class CollectionStoreService<
     private keyName: keyof ElementsType
   ) {
     super(initialState);
+  }
+
+  fill(newValues: ElementsType[]) {
+    const fillAction = (state: ElementsType[]) => [...state, ...newValues];
+    this.dispatch(fillAction);
+  }
+  changedSelector$() {
+    return this.select$((s) => s);
   }
 
   create(newValue: ElementsType) {

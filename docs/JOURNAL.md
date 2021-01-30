@@ -362,3 +362,7 @@ ng generate @schematics/angular:service --name=collection-store --project=data
 ## Search Store
 
 ng generate @schematics/angular:service --name=SearchStore --path=apps/showcase/src/app/routes/search/services
+
+## Categories counter
+
+ng generate @schematics/angular:service --name=categories-store --path=apps/showcase/src/app/core/services --no-interactive --dry-run

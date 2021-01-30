@@ -8,7 +8,7 @@ import { SearchParams } from '../models/SearchParams';
   providedIn: 'root',
 })
 export class ItemsService {
-  private endPoint = 'resources';
+  private endPoint = 'items';
   constructor(private rest: RestService<Item>) {}
 
   getFeatured$() {

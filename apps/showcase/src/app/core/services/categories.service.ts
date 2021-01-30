@@ -15,6 +15,10 @@ export class CategoriesService {
   getAll$() {
     return this.rest.getAll$(this.endPoint);
   }
+  getItemsCountById(categoryId: string) {
+    const query = `categoryId=${categoryId}`;
+    return this.rest.getCountByQuery$('items', query);
+  }
   transformToCards(item: Category[]): Card[] {
     return item.map((item: Category) => {
       return {
