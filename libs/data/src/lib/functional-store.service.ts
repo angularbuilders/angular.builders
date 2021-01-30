@@ -11,29 +11,24 @@ export class FunctionalStoreService<
   }
 
   public dispatch(action: Action<StateType>) {
-    queueScheduler.schedule(() => this.executeAction(action));
+    const state = this.state;
+    queueScheduler.schedule(() => this.executeAction(action, state));
   }
 
-  private executeAction(action: Action<StateType>) {
-    const currentState = this.state;
-    const newState = action(currentState);
-    if (this.changesState(newState)) {
-      this.state = newState;
-    }
+  private executeAction(action: Action<StateType>, state: StateType) {
+    const newState = action(state);
+    // ToDo: write to an instumental log
+    this.state = newState;
   }
 
   public select$<SelectionType>(selector: (state: StateType) => SelectionType) {
     return this.state$.pipe(
       map<StateType, SelectionType>(selector),
       distinctUntilChanged()
+      // distinctUntilChanged(this.areEqual)
     );
   }
 
-  private changesState(newState: StateType): boolean {
-    const newStateString = JSON.stringify(newState);
-    const stateString = JSON.stringify(this.state);
-    return newStateString != stateString;
-  }
   private areEqual<SelectionType>(a: SelectionType, b: SelectionType) {
     const aString = JSON.stringify(a);
     const bString = JSON.stringify(b);

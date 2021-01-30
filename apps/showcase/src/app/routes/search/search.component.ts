@@ -22,12 +22,10 @@ export class SearchComponent {
     private items: ItemsService,
     private store: SearchStoreService
   ) {
-    route.queryParams.subscribe({
-      next: (queryParams) => this.store.storeQueryParams(queryParams),
-    });
+    // ToDo: unifie
     this.params$ = this.store.selectParams$().pipe(
       tap((params) => {
-        if (params.term.length >= 2) {
+        if (params.term?.length >= 2) {
           this.items.getByQuery$(params).subscribe({
             next: (items) => this.store.storeItems(items),
             error: (error) => this.store.storeError(error),
@@ -37,6 +35,9 @@ export class SearchComponent {
         }
       })
     );
+    route.queryParams.subscribe({
+      next: (queryParams) => this.store.storeQueryParams(queryParams),
+    });
   }
 
   search(term: string) {

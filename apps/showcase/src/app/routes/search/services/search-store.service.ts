@@ -24,35 +24,16 @@ export class SearchStoreService extends FunctionalStoreService<Search> {
   }
 
   storeQueryParams(queryParams: unknown) {
-    const searchParams = queryParams as SearchParams;
     const storeParamsAction = (state: Search) => {
-      return {
-        params: {
-          term: searchParams.term ?? '',
-          sortBy: searchParams.sortBy ?? state.params.sortBy,
-        },
-        results: { data: [] },
-        status: {
-          type: 'searching',
-          message: `searching`,
-        },
-      };
+      state.params = queryParams as SearchParams;
+      return state;
     };
     this.dispatch(storeParamsAction);
   }
   storeTerm(term: string) {
     const storeTermAction = (state: Search) => {
-      return {
-        params: {
-          ...state.params,
-          term: term,
-        },
-        results: { data: [] },
-        status: {
-          type: 'searching',
-          message: `searching`,
-        },
-      };
+      state.params.term = term;
+      return state;
     };
     this.dispatch(storeTermAction);
   }
@@ -62,28 +43,19 @@ export class SearchStoreService extends FunctionalStoreService<Search> {
   }
   storeItems(items: Item[]) {
     const storeResultsAction = (state: Search) => {
-      return {
-        ...state,
-        results: { data: items },
-        status: {
-          type: 'idle',
-          message: `${items.length} found`,
-        },
-      };
+      state.results.data = items;
+      state.status.type = 'idle';
+      state.status.message = `${items.length} found`;
+      return state;
     };
     this.dispatch(storeResultsAction);
   }
   storeError(error: Error) {
-    console.error(error.message);
     const storeQueryParamsAction = (state: Search) => {
-      return {
-        ...state,
-        results: { data: [] },
-        status: {
-          type: 'error',
-          message: error.message,
-        },
-      };
+      state.results.data = [];
+      state.status.type = 'error';
+      state.status.message = error.message;
+      return state;
     };
     this.dispatch(storeQueryParamsAction);
   }

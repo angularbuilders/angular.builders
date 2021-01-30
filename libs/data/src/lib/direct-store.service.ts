@@ -9,16 +9,17 @@ export class DirectStoreService<StateType> {
     return this.deepClone(this.stateSubject$.value);
   }
   set state(newState: StateType) {
+    // ToDo: write to local storage
     this.stateSubject$.next(this.deepClone(newState));
   }
 
-  constructor(private readonly initialState: StateType) {}
+  constructor(private readonly initialState: StateType) {
+    // ToDo: read from local storage
+  }
 
   private deepClone(source: StateType): StateType {
-    if (Array.isArray(source)) {
-      return ([...source] as unknown) as StateType;
-    } else {
-      return { ...source };
-    }
+    // ToDo: optimize using fast-deep-clone
+    const sourceString = JSON.stringify(source);
+    return JSON.parse(sourceString);
   }
 }
