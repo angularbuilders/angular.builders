@@ -40,4 +40,15 @@ export class CategoriesStoreService extends FunctionalStoreService<CategoriesSto
     const selection = (state: CategoriesStore) => state.loaded;
     return this.select$(selection);
   }
+  storeFilled(filled: boolean) {
+    const storeFilledAction = (state: CategoriesStore) => {
+      state.filled = filled;
+      return state;
+    };
+    this.dispatch(storeFilledAction);
+  }
+  selectFilled$() {
+    const selection = (state: CategoriesStore) => state.filled;
+    return this.select$(selection);
+  }
 }
