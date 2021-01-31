@@ -15,7 +15,7 @@ export class CategoriesStoreService extends FunctionalStoreService<CategoriesSto
   constructor() {
     super({ categories: [], loaded: false, filled: false });
   }
-  storeCategories(categories: Category[]) {
+  saveCategories(categories: Category[]) {
     const storeCategoriesAction = (state: CategoriesStore) => {
       state.categories = categories;
       state.loaded = true;
@@ -24,29 +24,18 @@ export class CategoriesStoreService extends FunctionalStoreService<CategoriesSto
     this.dispatch(storeCategoriesAction);
   }
 
-  storeCategoryChange(categoryChanged: Category) {
-    const storeCategoryChangeAction = (state: CategoriesStore) => {
-      const currentCategoryId = state.categories.findIndex(
-        (category) => category.id === categoryChanged.id
-      );
-      if (currentCategoryId >= 0) {
-        state.categories[currentCategoryId] = categoryChanged;
-      }
-      return state;
-    };
-    this.dispatch(storeCategoryChangeAction);
-  }
-  selectLoaded$() {
-    const selection = (state: CategoriesStore) => state.loaded;
-    return this.select$(selection);
-  }
-  storeFilled(filled: boolean) {
+  saveFilled(filled: boolean) {
     const storeFilledAction = (state: CategoriesStore) => {
       state.filled = filled;
       return state;
     };
     this.dispatch(storeFilledAction);
   }
+  selectLoaded$() {
+    const selection = (state: CategoriesStore) => state.loaded;
+    return this.select$(selection);
+  }
+
   selectFilled$() {
     const selection = (state: CategoriesStore) => state.filled;
     return this.select$(selection);

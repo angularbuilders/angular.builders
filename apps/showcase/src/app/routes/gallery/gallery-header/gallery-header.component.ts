@@ -18,10 +18,8 @@ export class GalleryHeaderComponent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSearchChange(event: any) {
     this.searchTerm = event.target.value;
-    console.log(this.searchTerm);
   }
   onSearchSubmit() {
-    console.log(this.searchTerm);
     this.search.next(this.searchTerm);
   }
 }

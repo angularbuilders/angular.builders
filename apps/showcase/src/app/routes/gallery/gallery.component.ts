@@ -2,7 +2,7 @@ import { Card } from '@angular.builders/ui';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { CategoriesStoreService } from '../../core/services/categories-store.service';
 import { CategoriesService } from '../../core/services/categories.service';
 
@@ -23,55 +23,29 @@ export class GalleryComponent implements OnInit {
     private categories: CategoriesService,
     private categoriesStore: CategoriesStoreService
   ) {
-    this.storeLoadedCategories();
-    this.fillCountOnCategoriesLoaded(categoriesStore);
-    this.transformToCardsOnCategoriesFilled(categoriesStore);
+    this.categoryCards$ = this.getCategoryCardsFilled$();
+    // ToDo: do it en two steps to display categories before get their counters
   }
 
-  private storeLoadedCategories() {
-    this.categories.getAll$().subscribe({
-      next: (categories) => this.categoriesStore.storeCategories(categories),
-    });
-  }
-
-  private fillCountOnCategoriesLoaded(categoriesStore: CategoriesStoreService) {
-    categoriesStore.selectLoaded$().subscribe({
-      next: (loaded) => {
-        if (loaded) {
-          const counters$ = categoriesStore.state.categories.map((category) =>
-            this.categories.getItemsCountById(category.id)
-          );
-          forkJoin(counters$).subscribe({
-            next: (counters) => {
-              counters.forEach((counter, index) => {
-                const category = categoriesStore.state.categories[index];
-                category.description += ' - With ' + counter + ' items';
-                this.categoriesStore.storeCategoryChange(category);
-              });
-              this.categoriesStore.storeFilled(true);
-            },
-          });
-        }
-      },
-    });
-  }
-
-  private transformToCardsOnCategoriesFilled(
-    categoriesStore: CategoriesStoreService
-  ) {
-    this.categoryCards$ = categoriesStore.selectLoaded$().pipe(
-      map(() =>
-        this.categories.transformToCards(categoriesStore.state.categories)
-      ),
-      tap((x) => console.log(x))
+  private getCategoryCardsFilled$() {
+    return this.categories.getAll$().pipe(
+      tap((categories) => this.categoriesStore.saveCategories(categories)),
+      switchMap((categories) => {
+        const counters$ = categories.map((category) =>
+          this.categories.getItemsCountById(category.id)
+        );
+        return forkJoin(counters$);
+      }),
+      map((counters) => {
+        return counters.map((counter, index) => {
+          const category = this.categoriesStore.state.categories[index];
+          category.description += ' - With ' + counter + ' items';
+          return category;
+        });
+      }),
+      tap(() => this.categoriesStore.saveFilled(true)),
+      map((categories) => this.categories.transformToCards(categories))
     );
-    this.categoryCards$ = categoriesStore
-      .selectFilled$()
-      .pipe(
-        map(() =>
-          this.categories.transformToCards(categoriesStore.state.categories)
-        )
-      );
   }
 
   ngOnInit(): void {
