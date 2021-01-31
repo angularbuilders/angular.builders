@@ -2,7 +2,7 @@ import { Card } from '@angular.builders/ui';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { CategoriesStoreService } from '../../core/services/categories-store.service';
 import { CategoriesService } from '../../core/services/categories.service';
 
@@ -26,33 +26,6 @@ export class GalleryComponent implements OnInit {
     this.storeLoadedCategories();
     this.fillCountOnCategoriesLoaded(categoriesStore);
     this.transformToCardsOnCategoriesFilled(categoriesStore);
-  }
-
-  private transformToCardsOnCategoriesFilled(
-    categoriesStore: CategoriesStoreService
-  ) {
-    this.categoryCards$ = categoriesStore.selectLoaded$().pipe(
-      map((loaded) => {
-        if (loaded) {
-          return this.categories.transformToCards(
-            categoriesStore.state.categories
-          );
-        } else {
-          return [];
-        }
-      })
-    );
-    this.categoryCards$ = categoriesStore.selectFilled$().pipe(
-      map((filled) => {
-        if (filled) {
-          return this.categories.transformToCards(
-            categoriesStore.state.categories
-          );
-        } else {
-          return [];
-        }
-      })
-    );
   }
 
   private storeLoadedCategories() {
@@ -83,24 +56,22 @@ export class GalleryComponent implements OnInit {
     });
   }
 
-  private fillCountOnCategoriesLoadedOLD(
+  private transformToCardsOnCategoriesFilled(
     categoriesStore: CategoriesStoreService
   ) {
-    categoriesStore.selectLoaded$().subscribe({
-      next: (filled) => {
-        if (filled) {
-          // ToDo: emit every single change to each gallery card
-          categoriesStore.state.categories.forEach((category) =>
-            this.categories.getItemsCountById(category.id).subscribe({
-              next: (counter) => {
-                category.description += ' - With ' + counter + ' items';
-                this.categoriesStore.storeCategoryChange(category);
-              },
-            })
-          );
-        }
-      },
-    });
+    this.categoryCards$ = categoriesStore.selectLoaded$().pipe(
+      map(() =>
+        this.categories.transformToCards(categoriesStore.state.categories)
+      ),
+      tap((x) => console.log(x))
+    );
+    this.categoryCards$ = categoriesStore
+      .selectFilled$()
+      .pipe(
+        map(() =>
+          this.categories.transformToCards(categoriesStore.state.categories)
+        )
+      );
   }
 
   ngOnInit(): void {

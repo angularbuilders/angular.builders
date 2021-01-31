@@ -6,8 +6,8 @@ type Action<StateType> = (state: StateType) => StateType;
 export class FunctionalStoreService<
   StateType
 > extends DirectStoreService<StateType> {
-  constructor(initialState: StateType) {
-    super(initialState);
+  constructor(initialState: StateType, mustCloneDeep = true) {
+    super(initialState, mustCloneDeep);
   }
 
   public dispatch(action: Action<StateType>) {
@@ -24,15 +24,17 @@ export class FunctionalStoreService<
   public select$<SelectionType>(selector: (state: StateType) => SelectionType) {
     return this.state$.pipe(
       map<StateType, SelectionType>(selector),
-      distinctUntilChanged()
-      // distinctUntilChanged(this.areEqual)
+      distinctUntilChanged(this.areEqual.bind(this))
     );
   }
 
   private areEqual<SelectionType>(a: SelectionType, b: SelectionType) {
-    const aString = JSON.stringify(a);
-    const bString = JSON.stringify(b);
-    const areEqual = aString === bString;
-    return areEqual;
+    if (this.mustCloneDeep) {
+      const aJson = JSON.stringify(a);
+      const bJson = JSON.stringify(b);
+      return aJson === bJson;
+    } else {
+      return a === b;
+    }
   }
 }

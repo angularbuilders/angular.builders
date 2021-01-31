@@ -108,6 +108,38 @@
         "location": "On Line"
       },
       "id": "ngconf-2021"
+    },
+    {
+      "name": " ngx-errors",
+      "categoryId": "libraries",
+      "description": "Angular directives for displaying validation errors",
+      "url": "https://github.com/ngspot/ngx-errors",
+      "price": 0,
+      "event": {
+        "date": "",
+        "location": ""
+      },
+      "course": {
+        "date": "",
+        "teacher": ""
+      },
+      "id": "ngx-errors"
+    },
+    {
+      "name": "@jscutlery/semver",
+      "categoryId": "tools",
+      "description": "About Nx plugin to automate semantic versioning and CHANGELOG generation.",
+      "url": "https://github.com/jscutlery/semver",
+      "price": 0,
+      "event": {
+        "date": "",
+        "location": ""
+      },
+      "course": {
+        "date": "",
+        "teacher": ""
+      },
+      "id": "jscutlerysemver"
     }
   ]
 }

@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { SearchParams } from '../../core/models/SearchParams';
 import { ItemsService } from '../../core/services/items.service';
 import { SearchStoreService } from './services/search-store.service';
 
@@ -22,30 +23,34 @@ export class SearchComponent {
     private items: ItemsService,
     private store: SearchStoreService
   ) {
-    // ToDo: unifie
-    this.params$ = this.store.selectParams$().pipe(
-      tap((params) => {
-        if (params.term?.length >= 2) {
-          this.items.getByQuery$(params).subscribe({
-            next: (items) => this.store.storeItems(items),
-            error: (error) => this.store.storeError(error),
-          });
-        } else {
-          this.store.storeItems([]);
-        }
+    this.params$ = route.queryParams.pipe(
+      map((queryParams) => queryParams as SearchParams),
+      tap((searchParams) => {
+        this.store.saveSearchParams(searchParams);
+        this.getItemsOnParamsChange(searchParams);
       })
     );
-    route.queryParams.subscribe({
-      next: (queryParams) => this.store.storeQueryParams(queryParams),
-    });
+  }
+
+  private getItemsOnParamsChange(params: SearchParams) {
+    if (params.term?.length >= 2) {
+      this.store.saveSearchingStaus();
+      this.items.getByQuery$(params).subscribe({
+        next: (items) => this.store.saveItems(items),
+        error: (error) => this.store.saveError(error),
+      });
+    } else {
+      this.store.saveItems([]);
+    }
   }
 
   search(term: string) {
-    if (term != '[object Event]')
+    if (term != '[object Event]') {
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams: { term: term },
         queryParamsHandling: 'merge',
       });
+    }
   }
 }
