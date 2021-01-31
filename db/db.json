@@ -140,6 +140,22 @@
         "teacher": ""
       },
       "id": "jscutlerysemver"
+    },
+    {
+      "name": "Descuento 60%. sobre 99 € + IVA",
+      "categoryId": "libraries",
+      "description": "another one",
+      "url": "",
+      "price": 0,
+      "event": {
+        "date": "",
+        "location": ""
+      },
+      "course": {
+        "date": "",
+        "teacher": ""
+      },
+      "id": "descuento-60-sobre-99-iva"
     }
   ]
 }

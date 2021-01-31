@@ -367,4 +367,7 @@ ng generate @schematics/angular:service --name=SearchStore --path=apps/showcase/
 
 ng generate @schematics/angular:service --name=categories-store --path=apps/showcase/src/app/core/services --no-interactive --dry-run
 
-## Auth
+## Auth Interceptor
+
+ng generate @schematics/angular:interceptor --name=services/auth --project=auth --no-interactive
+ng generate @schematics/angular:service --name=services/authStore --project=auth --no-interactive
