@@ -12,8 +12,15 @@ type Auth = {
 })
 export class AuthStoreService extends FunctionalStoreService<Auth> {
   constructor() {
-    // ToDo: load from localStorage
-    super({ user: null, isAuthenticated: false });
+    let initialAuthState: Auth = { user: null, isAuthenticated: false };
+    const savedState = localStorage.getItem('auth');
+    if (savedState) {
+      const parsedState = JSON.parse(savedState) as Auth;
+      if (parsedState) {
+        initialAuthState = parsedState;
+      }
+    }
+    super(initialAuthState);
   }
 
   saveUser(user: User, isAuthenticated: boolean) {
@@ -22,8 +29,8 @@ export class AuthStoreService extends FunctionalStoreService<Auth> {
       state.isAuthenticated = isAuthenticated;
       return state;
     };
-    // ToDo: save to localStorage
     this.dispatch(saveUserAction);
+    localStorage.setItem('auth', JSON.stringify(this.state));
   }
 
   saveNoCredentials() {
@@ -32,7 +39,7 @@ export class AuthStoreService extends FunctionalStoreService<Auth> {
       state.isAuthenticated = false;
       return state;
     };
-    // ToDo: save to localStorage
+    localStorage.removeItem('auth');
     this.dispatch(saveEmptyCredentials);
   }
 
