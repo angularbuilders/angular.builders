@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { ApiConfig, API_CONFIG } from './models/ApiConfig';
 
 type idName = {
   id: string;
   name: string;
 };
-
 @Injectable({
   providedIn: 'root',
 })
@@ -25,7 +25,19 @@ export class RestService<T> {
   }
 
   getByQuery$(endpoint: string, query: string) {
-    return this.http.get<T>(this.makeUrl(endpoint, '', query));
+    return this.http.get<T[]>(this.makeUrl(endpoint, '', query));
+  }
+
+  getCountByQuery$(endpoint: string, query: string) {
+    return this.http
+      .get<unknown>(this.makeUrl(endpoint, '', query + '&_page=1&_limit=0'), {
+        observe: 'response',
+      })
+      .pipe(
+        map((response) => {
+          return response.headers.get('x-total-count');
+        })
+      );
   }
 
   post$(endpoint: string, payload: T) {

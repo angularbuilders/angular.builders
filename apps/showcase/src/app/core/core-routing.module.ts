@@ -76,13 +76,13 @@ export class CoreRoutingModule {
     this.router.events.subscribe((routerEvent) => {
       // console.log(routerEvent);
       if (routerEvent instanceof NavigationEnd) {
-        console.warn('Do something with new URL ' + routerEvent.url);
         const routeData = this.activatedRoute.firstChild?.snapshot.data;
         if (routeData) {
           this.headService.setTitle(routeData.pageTitle || '');
           this.headService.setDescription(routeData.pageDescription || '');
         }
         // ToDo: send signal to show or hide header/footer
+        //console.warn('Do something with new URL ' + routerEvent.url);
       }
     });
   }

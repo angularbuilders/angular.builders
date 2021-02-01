@@ -1,1 +1,8 @@
-<p>search-gallery-resources works!</p>
+<nav>
+  <span>{{ results?.length }} Results for: </span>
+  <em>{{ term }}</em>
+  <span> Sort By: {{ sortBy }} </span>
+</nav>
+<pre>
+  {{ results | json }}
+</pre>

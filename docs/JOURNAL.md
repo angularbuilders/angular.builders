@@ -336,3 +336,38 @@ ng g c --name=routes/items/new/item-form --changeDetection=OnPush --no-interacti
 ng g c --name=routes/items/new/event-sub-form --changeDetection=OnPush --no-interactive
 
 ng g c --name=routes/items/new/course-sub-form --changeDetection=OnPush --no-interactive
+
+---
+
+# 5 Datos asíncronos
+
+## Buscador reactivo
+
+### search-header
+
+Evitar llamadas innecesarias (debounceTime y distinct)
+
+> No filtrar `.pipe(filter((searchTerm) => searchTerm.length >= 2))` porque no limpia la interfaz (es responsabilidad del servicio)
+
+> atención al startWith
+
+## Mejora con un store reactivo
+
+## Store Services
+
+ng generate @schematics/angular:service --name=direct-store --project=data
+ng generate @schematics/angular:service --name=functional-store --project=data
+ng generate @schematics/angular:service --name=collection-store --project=data
+
+## Search Store
+
+ng generate @schematics/angular:service --name=SearchStore --path=apps/showcase/src/app/routes/search/services
+
+### Categories counter
+
+ng generate @schematics/angular:service --name=categories-store --path=apps/showcase/src/app/core/services --no-interactive --dry-run
+
+## Auth Interceptor
+
+ng generate @schematics/angular:interceptor --name=services/auth --project=auth --no-interactive
+ng generate @schematics/angular:service --name=services/authStore --project=auth --no-interactive

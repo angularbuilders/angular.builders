@@ -5,8 +5,9 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Category } from '../../../core/models/Category';
-import { SearchParams } from '../../../core/models/SearchParams';
 
 @Component({
   selector: 'ab-showcase-search-header',
@@ -15,17 +16,21 @@ import { SearchParams } from '../../../core/models/SearchParams';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchHeaderComponent {
-  @Input() resultsCount = 0;
-  @Input() sortBy: string | undefined = 'Name';
   @Input() term = '';
-  @Output() search = new EventEmitter<SearchParams>();
+  @Output() search = new EventEmitter<string>();
+  termControl!: FormControl;
   category!: Category;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSearchChange(event: any) {
-    this.term = event.target.value;
-  }
-  onSearchSubmit() {
-    this.search.next({ term: this.term, sortBy: this.sortBy });
+  constructor(private fb: FormBuilder) {}
+  ngOnInit(): void {
+    this.termControl = this.fb.control(this.term);
+    this.termControl.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe({
+        next: (searchTerm) => {
+          this.term = searchTerm;
+          this.search.next(this.term);
+        },
+      });
   }
 }

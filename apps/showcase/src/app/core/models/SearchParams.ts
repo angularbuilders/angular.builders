@@ -1,4 +1,4 @@
 export interface SearchParams {
   term: string;
-  sortBy?: string;
+  sortBy: string;
 }

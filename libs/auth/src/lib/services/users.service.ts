@@ -21,9 +21,9 @@ export class UsersService {
       .pipe(map(this.fakeCheckCredential));
   }
 
-  private fakeCheckCredential(result: User) {
+  private fakeCheckCredential(result: User[]) {
     // ToDo: This will be done at server side
-    if (Array.isArray(result) && result[0]['id']) {
+    if (result[0]['id']) {
       return result[0];
     } else {
       throw new Error('Not found credential!');

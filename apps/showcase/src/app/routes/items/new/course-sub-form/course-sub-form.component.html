@@ -1,7 +1,4 @@
-<ng-container
-  *ngIf="controlContainer.control"
-  [formGroup]="controlContainer.control"
->
+<ng-container *ngIf="controlContainer.control" [formGroup]="subForm">
   <div>
     <label for="date">Date: </label>
     <input

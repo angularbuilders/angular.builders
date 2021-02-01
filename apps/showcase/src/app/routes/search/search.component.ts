@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { SearchParams } from '../../core/models/SearchParams';
+import { ItemsService } from '../../core/services/items.service';
+import { SearchStoreService } from './services/search.store.service';
 
 @Component({
   selector: 'ab-showcase-search',
@@ -11,24 +13,44 @@ import { SearchParams } from '../../core/models/SearchParams';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent {
-  searchParams$: Observable<SearchParams>;
+  params$: Observable<{ term: string; sortBy: string }>;
+  results$ = this.store.selectResults$();
+  status$ = this.store.selectStatus$();
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-    this.searchParams$ = (route.queryParams as Observable<SearchParams>).pipe(
-      map((searchParams) => {
-        return {
-          term: searchParams.term ?? '',
-          sortBy: searchParams.sortBy ?? 'name',
-        };
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private items: ItemsService,
+    private store: SearchStoreService
+  ) {
+    this.params$ = route.queryParams.pipe(
+      map((queryParams) => queryParams as SearchParams),
+      tap((searchParams) => {
+        this.store.saveSearchParams(searchParams);
+        this.getItemsOnParamsChange(searchParams);
       })
     );
   }
 
-  search(searchParams: SearchParams) {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: searchParams,
-      queryParamsHandling: 'merge',
-    });
+  private getItemsOnParamsChange(params: SearchParams) {
+    if (params.term?.length >= 2) {
+      this.store.saveSearchingStaus();
+      this.items.getByQuery$(params).subscribe({
+        next: (items) => this.store.saveItems(items),
+        error: (error) => this.store.saveError(error),
+      });
+    } else {
+      this.store.saveItems([]);
+    }
+  }
+
+  search(term: string) {
+    if (term != '[object Event]') {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { term: term },
+        queryParamsHandling: 'merge',
+      });
+    }
   }
 }

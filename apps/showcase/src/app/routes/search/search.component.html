@@ -1,11 +1,14 @@
-<div *ngIf="searchParams$ | async as searchParams">
-  <ab-showcase-search-header
-    [term]="searchParams.term"
-    [sortBy]="searchParams.sortBy"
-    (search)="search($event)"
-  >
+<div *ngIf="params$ | async as params">
+  <ab-showcase-search-header [term]="params.term" (search)="search($event)">
   </ab-showcase-search-header>
+  <ab-showcase-search-gallery-resources
+    *ngIf="results$ | async as results"
+    [term]="params.term"
+    [sortBy]="params.sortBy"
+    [results]="results.data"
+  ></ab-showcase-search-gallery-resources>
+  <pre>
+    <!-- ToDo show gallery AND progress bar AND error -->
+    {{ status$ | async | json }}
+  </pre>
 </div>
-<pre>
-  <p>To do:... show filtered results</p>
-</pre>
