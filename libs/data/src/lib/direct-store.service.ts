@@ -11,7 +11,6 @@ export class DirectStoreService<StateType> {
       : { ...this.stateSubject$.value };
   }
   set state(newState: StateType) {
-    // ToDo: write to local storage
     this.mustCloneDeep
       ? this.stateSubject$.next(this.deepClone(newState))
       : this.stateSubject$.next({ ...newState });
@@ -20,12 +19,10 @@ export class DirectStoreService<StateType> {
   constructor(
     private readonly initialState: StateType,
     protected readonly mustCloneDeep = true
-  ) {
-    // ToDo: read from local storage
-  }
+  ) {}
 
   private deepClone(source: StateType): StateType {
-    // ToDo: optimize using fast-deep-clone
+    // ToDo: optimize deep clone
     const sourceJson = JSON.stringify(source);
     return JSON.parse(sourceJson);
   }

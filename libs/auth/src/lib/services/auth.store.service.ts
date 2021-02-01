@@ -12,6 +12,7 @@ type Auth = {
 })
 export class AuthStoreService extends FunctionalStoreService<Auth> {
   constructor() {
+    // ToDo: load from localStorage
     super({ user: null, isAuthenticated: false });
   }
 
@@ -21,6 +22,7 @@ export class AuthStoreService extends FunctionalStoreService<Auth> {
       state.isAuthenticated = isAuthenticated;
       return state;
     };
+    // ToDo: save to localStorage
     this.dispatch(saveUserAction);
   }
 
@@ -30,6 +32,7 @@ export class AuthStoreService extends FunctionalStoreService<Auth> {
       state.isAuthenticated = false;
       return state;
     };
+    // ToDo: save to localStorage
     this.dispatch(saveEmptyCredentials);
   }
 
@@ -45,11 +48,6 @@ export class AuthStoreService extends FunctionalStoreService<Auth> {
     return this.state.isAuthenticated;
   }
   getTokenSnapshot() {
-    if (this.state?.isAuthenticated) {
-      if (this.state.user) {
-        return this.state.user.stk || '';
-      }
-    }
-    return '';
+    return this.state?.user?.stk || '';
   }
 }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { SearchParams } from '../../core/models/SearchParams';
 import { ItemsService } from '../../core/services/items.service';
-import { SearchStoreService } from './services/search-store.service';
+import { SearchStoreService } from './services/search.store.service';
 
 @Component({
   selector: 'ab-showcase-search',

@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { CategoriesStoreService } from '../../core/services/categories-store.service';
 import { CategoriesService } from '../../core/services/categories.service';
+import { CategoriesStoreService } from '../../core/services/categories.store.service';
 
 @Component({
   selector: 'ab-showcase-gallery',
