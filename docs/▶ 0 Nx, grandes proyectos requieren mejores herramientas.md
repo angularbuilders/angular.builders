@@ -20,6 +20,8 @@
 
 ### Laboratorio
 
+[LabsAdemy/angular-escalable-vitae-febrero](https://github.com/LabsAdemy/angular-escalable-vitae-febrero)
+
 ---
 
 # 1️⃣ - Instalación y configuración de Nx
@@ -28,7 +30,7 @@
 
 ## 👨‍🏫 Consola gráfica
 
- [https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console](https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console)
+[https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console](https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console)
 
 ## ✍ Práctica
 
@@ -69,7 +71,7 @@ npx create-nx-workspace --preset=angular
 
 ### Core Module
 
-Módulo destinado a enrutado y dependencias de otros módulos. *Lo de siempre 💤*
+Módulo destinado a enrutado y dependencias de otros módulos. _Lo de siempre 💤_
 
 ```bash
 ng g @schematics/angular:module core --project=showcase --routing --routingScope=Root
@@ -126,3 +128,5 @@ ng g @nrwl/angular:library auth --buildable --enableIvy --lazy --linter=es
 ### StoryBook
 
 ## ✍ Práctica
+
+> run `package.json` scripts
