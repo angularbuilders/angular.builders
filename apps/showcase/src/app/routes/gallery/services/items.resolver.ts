@@ -15,14 +15,12 @@ import { ItemsService } from '../../../core/services/items.service';
   providedIn: 'root',
 })
 export class ItemsResolver implements Resolve<Card[]> {
-  constructor(private resources: ItemsService) {}
+  constructor(private items: ItemsService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Card[]> {
-    return this.resources
-      .getFeatured$()
-      .pipe(map(this.resources.transformToCards));
+    return this.items.getFeatured$().pipe(map(this.items.transformToCards));
   }
 }

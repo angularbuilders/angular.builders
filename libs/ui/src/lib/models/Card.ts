@@ -3,5 +3,6 @@ export interface Card {
   description: string;
   image?: string;
   url?: string;
+  params?: Record<string, unknown>;
   tag?: string;
 }

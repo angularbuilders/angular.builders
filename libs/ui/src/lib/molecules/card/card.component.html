@@ -1,4 +1,4 @@
-<article [routerLink]="[card.url || '']">
+<article [routerLink]="[card.url || '']" [queryParams]="card.params || {}">
   <header>
     <!-- image -->
     <h3>{{ card.title }}</h3>

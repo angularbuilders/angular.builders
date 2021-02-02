@@ -142,10 +142,10 @@
       "id": "jscutlerysemver"
     },
     {
-      "name": "Descuento 60%. sobre 99 € + IVA",
-      "categoryId": "libraries",
-      "description": "another one",
-      "url": "",
+      "name": "ngneat hot toast",
+      "categoryId": "ui-components",
+      "description": "The Best Angular Toast in Town Smoking hot Angular notifications. Inspired from React Hot Toast",
+      "url": "https://ngneat.github.io/hot-toast/",
       "price": 0,
       "event": {
         "date": "",
@@ -155,7 +155,7 @@
         "date": "",
         "teacher": ""
       },
-      "id": "descuento-60-sobre-99-iva"
+      "id": "ngneat-hot-toast"
     }
   ]
 }

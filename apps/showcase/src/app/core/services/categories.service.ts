@@ -22,7 +22,8 @@ export class CategoriesService {
   transformToCards(item: Category[]): Card[] {
     return item.map((item: Category) => {
       return {
-        // url: `./categories/${item['id']}`,
+        url: `./search`,
+        params: { term: item['id'], sortBy: 'name' },
         title: item['name'],
         description: item['description'] || '',
       };
